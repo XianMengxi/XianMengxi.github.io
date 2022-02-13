@@ -3,11 +3,11 @@
   <title>闲居</title>
   
   
-  <link href="https://gitee.com/XianMengxi/XianMengxi.gitee.io/atom.xml" rel="self"/>
+  <link href="https://gitee.com/XianMengxi/blog/atom.xml" rel="self"/>
   
-  <link href="https://gitee.com/XianMengxi/XianMengxi.gitee.io/"/>
+  <link href="https://gitee.com/XianMengxi/blog/"/>
   <updated>2022-02-13T09:33:42.533Z</updated>
-  <id>https://gitee.com/XianMengxi/XianMengxi.gitee.io/</id>
+  <id>https://gitee.com/XianMengxi/blog/</id>
   
   <author>
     <name>闲梦溪</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://gitee.com/XianMengxi/XianMengxi.gitee.io/2022/02/13/hello-world/"/>
-    <id>https://gitee.com/XianMengxi/XianMengxi.gitee.io/2022/02/13/hello-world/</id>
+    <link href="https://gitee.com/XianMengxi/blog/2022/02/13/hello-world/"/>
+    <id>https://gitee.com/XianMengxi/blog/2022/02/13/hello-world/</id>
     <published>2022-02-13T00:58:41.084Z</published>
     <updated>2022-02-13T09:33:42.533Z</updated>
     
