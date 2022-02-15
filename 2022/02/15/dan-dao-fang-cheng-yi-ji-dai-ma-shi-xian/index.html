@@ -443,13 +443,10 @@
 <ul>
 <li><p>飞行时间 $t&#x3D;\frac{f}{v_x}&#x3D;\frac{f}{v\cos\alpha}$ (f为如图的水平距离)</p>
 </li>
-<li><p>子弹击打中的高度</p>
+<li><p>子弹击打中的高度<br> $$<br>  h &#x3D; v_y t - \frac{1}{2} g t^2&#x3D;v \sin \alpha * \frac{f}{v \cos \alpha} - \frac{1}{2} g * (\frac{f}{v \cos \alpha})^2&#x3D;f \tan \alpha - \frac{1}{2} g * (\frac{f}{v \cos \alpha})^2<br> $$</p>
 </li>
 </ul>
 </li>
-</ol>
-<p> $$<br>    h &#x3D; v_yt-\frac{1}{2}gt^2&#x3D;v\sin\alpha<em>\frac{f}{v\cos\alpha}-\frac{1}{2}g</em>(\frac{f}{v\cos\alpha})^2&#x3D;f\tan\alpha-\frac{1}{2}g*(\frac{f}{v\cos\alpha})^2<br> $$</p>
-<ol start="3">
 <li><p>求解：先来分析已知条件以及目的参数，我们已经计算得到了C点相对于A点的位置，那么h和f已知，有重力加速度已知，目标是求解$\alpha$,这容易得到$\alpha$的解析式，下面利用高斯牛顿法迭代求解$\alpha$</p>
 </li>
 <li><p>高斯牛顿法求解方程</p>
