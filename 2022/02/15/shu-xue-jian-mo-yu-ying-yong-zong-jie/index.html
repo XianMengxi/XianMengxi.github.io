@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="弹道方程以及代码实现, 闲居">
+    <meta name="keywords" content="数学建模与应用总结, 闲居">
     <meta name="description" content="本文将从头且十分详细地解析弹道方程以及其应用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>弹道方程以及代码实现 | 闲居</title>
+    <title>数学建模与应用总结 | 闲居</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -257,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/01.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/02.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">弹道方程以及代码实现</h1>
+                    <h1 class="description center-align post-title">数学建模与应用总结</h1>
                 </div>
             </div>
         </div>
@@ -284,16 +284,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/RoboMaster/">
-                                <span class="chip bg-color">RoboMaster</span>
+                            <a href="/tags/%E7%BE%8E%E8%B5%9B/">
+                                <span class="chip bg-color">美赛</span>
                             </a>
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%BE%85%E7%9E%84/">
-                                <span class="chip bg-color">辅瞄</span>
+                            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                <span class="chip bg-color">数学建模</span>
                             </a>
                         
                     </div>
@@ -304,8 +300,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/RoboMaster/" class="post-category">
-                                RoboMaster
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="post-category">
+                                数学建模
                             </a>
                         
                     </div>
@@ -338,47 +334,389 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="弹道方程以及代码实现"><a href="#弹道方程以及代码实现" class="headerlink" title="弹道方程以及代码实现"></a>弹道方程以及代码实现</h1><h2 id="什么是弹道方程？"><a href="#什么是弹道方程？" class="headerlink" title="什么是弹道方程？"></a>什么是弹道方程？</h2><p>弹道方程，就是使用数学模型来量化子弹在空气阻力作用下地运动轨迹。这听起来十分复杂，但其实际上其算法核心是依托于我们初中学过的斜抛运动</p>
-<p><img src="/2022/02/15/dan-dao-fang-cheng-yuan-li/1.png" alt="弹道示意图"></p>
-<p>现在，我们假设子弹从A点出发，需要击打C点，在重力加速度和空气阻力的作用下，我们不可能使子弹的初速度直接指向AC方向，而是使子弹的发射方向偏离AC方向$\beta$角度，这样才能确保子弹能以优美的弧线直接击打中C点。弹道方程的核心便是求解$\beta$角</p>
-<h2 id="忽略空气阻力的弹道方程建模"><a href="#忽略空气阻力的弹道方程建模" class="headerlink" title="忽略空气阻力的弹道方程建模"></a>忽略空气阻力的弹道方程建模</h2><ol>
-<li><p>首先对初速度V进行速度分解</p>
-<p> $$<br> \begin{cases}<br>     v_x&#x3D;v\cos\alpha \<br>     v_y&#x3D;v\sin\alpha<br> \end{cases}<br> $$</p>
+                <h1 id="数学建模算法与应用算法分类与总结"><a href="#数学建模算法与应用算法分类与总结" class="headerlink" title="数学建模算法与应用算法分类与总结"></a>数学建模算法与应用算法分类与总结</h1><h2 id="模型建立方法以及流程"><a href="#模型建立方法以及流程" class="headerlink" title="模型建立方法以及流程"></a>模型建立方法以及流程</h2><ol>
+<li><p>问题分析</p>
+<p>简述问题的意思，明确问题处理的思路</p>
 </li>
-<li><p>由于水平上不受力的作用(忽略了空气阻力),故</p>
-<ul>
-<li><p>飞行时间 $t&#x3D;\frac{f}{v_x}&#x3D;\frac{f}{v\cos\alpha}$ (f为如图的水平距离)</p>
+<li><p>模型假设</p>
+<p>通常为8-10条，给出模型在什么条件下成立</p>
 </li>
-<li><p>子弹击打中的高度<br> $$<br>  h &#x3D; v_y t - \frac{1}{2} g t^2&#x3D;v \sin \alpha * \frac{f}{v \cos \alpha} - \frac{1}{2} g * (\frac{f}{v \cos \alpha})^2&#x3D;f \tan \alpha - \frac{1}{2} g * (\frac{f}{v \cos \alpha})^2<br> $$</p>
+<li><p>符号说明</p>
 </li>
-</ul>
+<li><p>模型建立</p>
+<p> 给出一定的公式，推到出相应的最终表达式</p>
 </li>
-<li><p>求解：先来分析已知条件以及目的参数，我们已经计算得到了C点相对于A点的位置，那么h和f已知，有重力加速度已知，目标是求解$\alpha$,这容易得到$\alpha$的解析式，下面利用高斯牛顿法迭代求解$\alpha$</p>
+<li><p>模型求解</p>
 </li>
-<li><p>高斯牛顿法求解方程</p>
-<ul>
-<li><p>首先构造残差函数</p>
-<p>  $$<br>  \lvert\lvert e \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual}-h_{calc} \rvert\rvert ^2<br>  $$</p>
-<p>  其中$ h_{actual} $ 为已知值， $ h_{calc} $ 是使用迭代法逐渐逼近的h值</p>
-<p>  我们的目标是</p>
-<p>  $$<br>  \min \lvert\lvert e \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual}-h_{calc} \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual} - f\tan\alpha+\frac{1}{2}g*(\frac{f}{v\cos\alpha})^2 \rvert\rvert ^2<br>  $$</p>
-<p>  以此来达到使用计算机迭代逼近$ h_{actual} $的目的</p>
+<li><p>灵敏度分析</p>
+<p> 已经假设固定的变量，实际上并不是固定的，要给定其一定的上下波动范围来对其进行求解</p>
 </li>
-<li><p>对误差函数e进行泰勒展开，则：</p>
-<p>  $$<br>  e(\theta + \Delta\theta)&#x3D;e(\theta)+\frac{\delta e}{\delta \theta}*d\theta<br>  $$</p>
-</li>
-<li><p>那么近似的误差函数可以写为(对内部进行泰勒展开并且将整个式子展开)</p>
-<p>  $$<br>  \lvert\lvert e(\theta + \Delta\theta) \rvert\rvert ^2 &#x3D; e^2 + 2e \frac{\delta e}{\delta \theta} \Delta\theta + (\frac{\delta e}{\delta \theta} )^2 (\Delta \theta)^2<br>  $$</p>
-</li>
-<li><p>对于这个方程,$ e(\theta + \Delta\theta) $ 表示当e加上一个微小变量时e的变化幅度，当e最小时，有那么$ d e(\theta + \Delta\theta) &#x3D; 0 $ ,解得 </p>
-<p>  $$<br>  \Delta \theta &#x3D; -\frac{e}{\frac{\delta e}{\delta\theta}}<br>  $$</p>
-</li>
-<li><p>$\Delta \theta$变化的方向是使误差函数趋于最小值的方向，那么</p>
-<p>  $$<br>  \theta_{update}&#x3D; \theta + \Delta\theta<br>  $$</p>
-</li>
-</ul>
+<li><p>结果分析以及得出结论</p>
 </li>
 </ol>
+<h2 id="规划类"><a href="#规划类" class="headerlink" title="规划类"></a>规划类</h2><ul>
+<li><p>线性规划</p>
+<ul>
+<li><p>线性规划模型通常在题目中表现会比较明显,不过多赘述(书本$P_1$)</p>
+</li>
+<li><p>可转为线性规划的形式(书本$P_8$)</p>
+</li>
+</ul>
+<p>  $$ \min \lvert x_1 \rvert + \lvert x_2 \rvert +\lvert x_3 \rvert + … + \lvert x_n \rvert \<br>  s.t. Ax \leq b<br>  $$</p>
+<ul>
+<li><p>带有绝对值的min max类非线性规划，可以使用手工线性化之后使用软件求解(书本$P_9$)</p>
+</li>
+<li><p>线性求解参考代码$P_{14}$</p>
+</li>
+</ul>
+</li>
+<li><p>整数规划</p>
+<ul>
+<li><p>适宜解决的问题</p>
+<ol>
+<li><p>符合线性规划的形式且带整数约束的规划问题</p>
+</li>
+<li><p>要么是1要么是0的0-1规划问题(使用或不使用)</p>
+</li>
+<li><p>路线规划问题(也用于图论)，即进入一个地方则$x_{ij}&#x3D;1$,否则$x_{ij}&#x3D;0$ ($P_{20}$)</p>
+</li>
+<li><p>引入充分大的数构成约束来达到选择的效果($P_{21}$)</p>
+</li>
+<li><p>混合整数规划问题，比如如果不采用a方案，那么a方案的产出$x_a&#x3D;0$,这时候可以使用($P_{22}$)</p>
+</li>
+</ol>
+</li>
+<li><p>代码参考$P_{26}$</p>
+</li>
+<li><p>利用蒙卡特洛方法可以很好地对非线性整数规划问题进行求解($P_{27}$)</p>
+</li>
+</ul>
+</li>
+<li><p>非线性规划</p>
+<ul>
+<li><p>无约束非线性优化的求解($P_{38}$),利用海塞尔矩阵求解</p>
+</li>
+<li><p>带约束非线性优化的求解思路，通常是线性化为非线性,带约束化为无约束</p>
+<ol>
+<li><p>只有等式约束的时候，可以采用拉格朗日乘数法($P_{39}$)</p>
+</li>
+<li><p>当同时含有等式约束和不等式约束时，可以采用罚函数法($P_{39}$)</p>
+</li>
+</ol>
+</li>
+<li><p>凸规划($P_{40}$)</p>
+<ul>
+<li><p>凸规划是求解式子为凸函数，不等式约束为凸函数，等式约束为线性函数的规划，线性规划是特殊的凸规划,凸规划局部最优解即为全局最优解</p>
+</li>
+<li><p>KT条件用来判断凸规划的解x是否是全局最优解</p>
+</li>
+</ul>
+</li>
+<li><p>例子($P_{42} , P_{56}$)</p>
+</li>
+<li><p>二次规划</p>
+<ul>
+<li>决策变量为二次函数，而约束条件为线性函数的模型(P_{48})</li>
+</ul>
+</li>
+<li><p>非线性规划代码介绍($P_{49}$)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><ul>
+<li><p>Matlab生成图($P_{65}$)</p>
+</li>
+<li><p>典型的寻路算法(Dijkstra,Floyd)($P_{67}$)</p>
+</li>
+<li><p>最短路问题的0-1整数规划模型，见整数规划($P_{74}$)</p>
+</li>
+<li><p>最小生成树算法($P_{75}$)Prim,Kruskal算法，最小生成树的整数规划模型($P_{78}$)</p>
+</li>
+<li><p>最大流算法:所谓最大流算法指的是在流进等于流出的条件之下，整个图允许通过的最大容量(不包含始末),最大流算法可以写作整数规划模型来求解($P_{82}$),也可以使用标号法Ford-Fulkerson算法来实现($P_{83}$)</p>
+</li>
+<li><p>最小费用流算法：考虑到达终点所需要的最小花费的算法，一般和最大流算法一起使用，一般转化为线性规划来求解，也可以使用迭代法来求解($P_{84}$)</p>
+</li>
+<li><p>改良圈算法：即不重复经过同一个节点，且使得总路程最短的解算算法($P_{88}$)，这个问题也可以用整数规划模型来解决</p>
+</li>
+<li><p>关键路径求解：可以将关键路径看成最长路径来进行求解$P_{96}$，也可以根据最早开工时间和最晚开工时间迭代求解$P_{97}$</p>
+</li>
+<li><p>实际上工作时间可能会随着客观因素而变动，利用$P_{100}$的算法来计算能够按时完成任务的概率</p>
+</li>
+</ul>
+<h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2><ul>
+<li><p>特性：插值可以对区间之外的部分作出短期预测，长期预测可能失效较为严重</p>
+</li>
+<li><p>多项式插值($P_{114}$)</p>
+<ul>
+<li><p>待定系数法，用于观测点数目和约束方程数量一致的情况($P_{114}$) </p>
+</li>
+<li><p>拉格朗日插值法，一般实际应用意义不是很大($P_{115}$)   </p>
+</li>
+<li><p>牛顿插值法，一般实际应用意义不大($P_{116}$)</p>
+</li>
+</ul>
+</li>
+<li><p>分段线性化方法插值，多项式高次插值导致产生龙格震荡现象，故利用分段线性化可以更好地拟合出真正地曲线($P_{119}$)</p>
+</li>
+<li><p>三次样条插值：分段线性化的插值会导致取样点处的导数不存在,三次插值实际上是利用节点处的一阶和二阶导数相等来待定系数求解($P_{119}$)</p>
+</li>
+<li><p>二次插值</p>
+<ul>
+<li><p>网格节点插值法($P_{121}$)</p>
+<ul>
+<li><p>最临近点插值，即某一点与这一点所处于的区间最接近的有值的一点函数值相同</p>
+</li>
+<li><p>分片线性插值</p>
+</li>
+<li><p>双线性插值</p>
+</li>
+</ul>
+</li>
+<li><p>散乱数据插值方法，对一群离散点进行插值($P_{122}$)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="拟合"><a href="#拟合" class="headerlink" title="拟合"></a>拟合</h2><ul>
+<li><p>最小二乘法拟合(线性与非线性)($P_{132}$)</p>
+</li>
+<li><p>拟合函数选择($P_{133}$)</p>
+</li>
+<li><p>拟合可以使用Matlab工具箱，参考($P_{133}$)</p>
+</li>
+<li><p>曲线与曲面拟合($P_{141}$)</p>
+</li>
+<li><p>拟合或统计的判断方法($P_{143}$)</p>
+</li>
+<li><p>函数逼近($P_{143}$)</p>
+</li>
+</ul>
+<h2 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h2><ul>
+<li><p>用途：可用于每一时刻的状态变化和下一时刻状态变化密切相关的场合，比如传染病模型，传染人数和感染人数相关</p>
+</li>
+<li><p>传播可以采用指数传播模型($P_{153}$)</p>
+</li>
+<li><p>三种典型的传染病模型($P_{154}$)</p>
+<ul>
+<li><p>SI模型，不考虑治愈以及免疫</p>
+</li>
+<li><p>SIS模型考虑病人治愈</p>
+</li>
+<li><p>SIR模型考虑治愈以及免疫之后退出感染系统</p>
+</li>
+</ul>
+</li>
+<li><p>微分方程求解($P_{159}$)</p>
+</li>
+<li><p>Lorenz模型的混沌效应:具有初值敏感性(不知道有什么用)($P_{161}$)</p>
+</li>
+<li><p>边值问题求解($P_{166}$)</p>
+</li>
+<li><p>人口预测模型</p>
+<ul>
+<li><p>Malthus模型，人口预测模型，假设人口的增长率不变($P_{170}$)</p>
+</li>
+<li><p>Logistic模型，人口的增长率是与人口数量有关($P_{171}$)</p>
+</li>
+</ul>
+</li>
+<li><p>种群相互作用模型</p>
+<ul>
+<li><p>种群竞争模型($P_{173}$)</p>
+</li>
+<li><p>弱肉强食模型($P_{174}$)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数理统计"><a href="#数理统计" class="headerlink" title="数理统计"></a>数理统计</h2><ul>
+<li><p>区间估计:即估计在某一区间内的数占总量的百分之几，注意均值和方差是否已知($P_{182}$)</p>
+</li>
+<li><p>双变量联合分布求置信区间示例($P_{184}$)</p>
+</li>
+<li><p>经验分布函数的使用($P_{184}$)</p>
+</li>
+<li><p>Q-Q图检验拟合优度，即检验某个随机变量是否符合你所预估的分布($P_{185}$)</p>
+</li>
+<li><p>非参数检验</p>
+<ul>
+<li><p>卡方拟合优度检验：检验总体X是否满足某个概率密度($P_{187}$)</p>
+</li>
+<li><p>柯尔莫哥洛夫检验：基于经验分布函数检验理论分布函数与样本分布函数的拟合优度($P_{191}$)</p>
+</li>
+<li><p>秩和检验：检验两个分布总体分布是否有明显差异($P_{192}$)</p>
+</li>
+</ul>
+</li>
+<li><p>Bootstrap方法：抽取很多个样本，利用样本对总体进行统计推断</p>
+<ul>
+<li><p>标准误差的Bootstrap估计($P_{194}$)</p>
+</li>
+<li><p>均方误差的Bootstrap估计($P_{196}$)</p>
+</li>
+<li><p>Bootstrap求解置信区间($P_{197}$)</p>
+</li>
+<li><p>分布函数形式已知，但部分参数未知，可以利用Bootstrap进行参数估计($P_{198}$)</p>
+</li>
+</ul>
+</li>
+<li><p>均值检验：比较两个总体的均值($P_{201}$),不用于多于两个总体</p>
+</li>
+<li><p>单因素方差分析：仅仅考虑一个因素，其它因素不变，用来判断该因素对总体的影响($P_{202}$)</p>
+</li>
+<li><p>双因素方差分析：考虑两个因素对总体的影响，包括无交互影响的双因素方差分析($P_{207}$)和有交互影响的方差分析($P_{208}$)</p>
+</li>
+<li><p>回归分析</p>
+<ul>
+<li><p>多元线性回归</p>
+<ul>
+<li><p>参数估计($P_{211}$)</p>
+</li>
+<li><p>对统计变量的残差，期望，方差进行分析($P_{212}$)</p>
+</li>
+<li><p>回归模型的假设检验,检验变量是否符合该多元线性关系，排除多出维度参数的可能($P_{213}$)</p>
+</li>
+<li><p>回归系数的假设检验和区间估计，即排除部分维度，找出拟合最好的维度，舍去贡献度很小的维度($P_{213}$)</p>
+</li>
+<li><p>回归模型预测($P_{214}$)</p>
+</li>
+</ul>
+</li>
+<li><p>多元二次项回归($P_{214}$)</p>
+</li>
+<li><p>非线性回归($P_{218}$)</p>
+</li>
+<li><p>逐步回归：多因素，使用关联性强的因素选入模型进行回归，舍去关联性不强的因素</p>
+<ul>
+<li><p>前进法，每次增加一个因素，然后使用显著性P值来检验新因素的影响($P_{220}$)</p>
+</li>
+<li><p>后退法，每次减少一个因素，然后使用显著性P值来检验新因素的影响($P_{221}$)</p>
+</li>
+<li><p>逐步回归法，每增加一个因素，就要对所有因素进行一次检验，解得的集合为最优回归子集($P_{221}$)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>灰色模型和Bootstrap理论</p>
+<ul>
+<li><p>用途：小样本，数据预测，统计推断，对分布参数进行较为精确的区间估计，不需要知道原有数据的分布($P_{222}$)</p>
+</li>
+<li><p>灰色模型建立($P_{223}$)</p>
+</li>
+<li><p>Bootstrap分析：重发取样，求得统计量的经验分布并进行区间估计($P_{224}$)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="差分方程"><a href="#差分方程" class="headerlink" title="差分方程"></a>差分方程</h2><ul>
+<li><p>特点：通过递推关系求得状态之间的关联</p>
+</li>
+<li><p>差分方程建模($P_{231}$)</p>
+</li>
+<li><p>Leslie种群模型：求年龄分布和种群增长的规律，有明显的递推关系特征</p>
+</li>
+</ul>
+<h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><ul>
+<li><p>支持向量机($P_{248}$)</p>
+</li>
+<li><p>Q型据类分析($P_{262}$)，对样本进行分类</p>
+</li>
+</ul>
+<h2 id="多元分析"><a href="#多元分析" class="headerlink" title="多元分析"></a>多元分析</h2><ul>
+<li><p>聚类分析</p>
+<ul>
+<li><p>Q型聚类分析，样本分类</p>
+</li>
+<li><p>R型聚类，用于变量分类，便于理清变量之间的关系，然后通过这个关系来选择关键因素进行模型建立($P_{269}$)</p>
+</li>
+</ul>
+</li>
+<li><p>主成分分析($P_{279}$)</p>
+<ul>
+<li><p>特点：是一种降维方法，去除很多无关的变量，提取主要变量</p>
+</li>
+<li><p>主成分回归分析：将回归自变量变换到另一组变量，提取主成分之后再进行逆变换之后得出参数估计</p>
+</li>
+</ul>
+</li>
+<li><p>因子分析：和主成分分析的目的相同，都是特征降维($P_{285}$)</p>
+</li>
+<li><p>因子分析与主成分分析对比($P_{296}$)</p>
+</li>
+<li><p>判别分析：使用研究个体的观察指标来判断个体的类型($P_{303}$)</p>
+<ul>
+<li><p>距离判断($P_{304}$)</p>
+</li>
+<li><p>Fisher判别($P_{306}$)</p>
+</li>
+<li><p>Bayes判别($P_{307}$)</p>
+</li>
+</ul>
+</li>
+<li><p>典型相关分析：用来研究两组变量的相关关系($P_{313}$)</p>
+</li>
+<li><p>对应分析：再因子分析的基础之上，解决因子分析求解速度很慢的问题($P_{328}$)</p>
+</li>
+<li><p>多维标度法：n个指标反映的东西是模糊的，通过这几个指标的距离，反映他们之间的关系($P_{344}$)</p>
+</li>
+</ul>
+<h2 id="偏最小二乘回归分析"><a href="#偏最小二乘回归分析" class="headerlink" title="偏最小二乘回归分析"></a>偏最小二乘回归分析</h2><ul>
+<li>通过从自变量和因变量中提取成分来求解多对多的回归建模($P_{355}$)</li>
+</ul>
+<h2 id="现代优化算法"><a href="#现代优化算法" class="headerlink" title="现代优化算法"></a>现代优化算法</h2><ul>
+<li><p>模拟退火算法($P_{367}$)</p>
+</li>
+<li><p>遗传算法($P_{373}$)</p>
+</li>
+</ul>
+<h2 id="综合评价和决策方法"><a href="#综合评价和决策方法" class="headerlink" title="综合评价和决策方法"></a>综合评价和决策方法</h2><ul>
+<li><p>确定多属性的权值算法</p>
+<ul>
+<li><p>TOPSIS算法：通过距离正理想解和负理想解的距离来判断($P_{411}$)</p>
+</li>
+<li><p>模糊综合方法：不受主观因素影响，可用于人才资源评测($P_{416}$)</p>
+</li>
+</ul>
+</li>
+<li><p>数据包络分析：对多指标输入和多指标输出有效($P_{410}$)</p>
+</li>
+<li><p>灰色关联分析($P_{424}$)</p>
+</li>
+<li><p>主成分分析($P_{427}$)</p>
+</li>
+<li><p>秩和比综合评价($P_{430}$)</p>
+</li>
+<li><p>熵权法评价($P_{432}$)</p>
+</li>
+<li><p>PageRank算法：搜索引擎检测结果排序算法($P_{434}$)</p>
+</li>
+</ul>
+<h2 id="预测方法"><a href="#预测方法" class="headerlink" title="预测方法"></a>预测方法</h2><ul>
+<li><p>根据已有数据对未来一段时间的数据进行预测</p>
+</li>
+<li><p>微分方程模型($P_{448}$)</p>
+</li>
+<li><p>灰色预测模型($P_{450}$)</p>
+</li>
+<li><p>马尔可夫预测模型：下一步发生的概率与历史的数据无关，仅仅与当前位置有关($P_{460}$)</p>
+</li>
+<li><p>时间序列</p>
+<ul>
+<li>检验时间序列是否平稳的Daniel算法($P_{466}$)</li>
+</ul>
+</li>
+<li><p>插值与拟合($P_{469}$)</p>
+</li>
+<li><p>神经网络($P_{473}$)</p>
+</li>
+<li><p>通过元胞自动机来模拟传播并且进行预测</p>
+</li>
+</ul>
+<h2 id="多目标规划"><a href="#多目标规划" class="headerlink" title="多目标规划"></a>多目标规划</h2><ul>
+<li>即有多个目标函数，求解对于所有目标函数最小或者最大的最优解问题</li>
+</ul>
 
                 
             </div>
@@ -405,7 +743,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://XianMengxi.github.io/2022/02/15/dan-dao-fang-cheng-yuan-li/">https://XianMengxi.github.io/2022/02/15/dan-dao-fang-cheng-yuan-li/</a>
+                    <a href="https://XianMengxi.github.io/2022/02/15/shu-xue-jian-mo-yu-ying-yong-zong-jie/">https://XianMengxi.github.io/2022/02/15/shu-xue-jian-mo-yu-ying-yong-zong-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -443,16 +781,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/RoboMaster/">
-                                    <span class="chip bg-color">RoboMaster</span>
+                                <a href="/tags/%E7%BE%8E%E8%B5%9B/">
+                                    <span class="chip bg-color">美赛</span>
                                 </a>
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%BE%85%E7%9E%84/">
-                                    <span class="chip bg-color">辅瞄</span>
+                                <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                    <span class="chip bg-color">数学建模</span>
                                 </a>
                             
                         </div>
@@ -500,10 +834,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2022/02/15/dan-dao-fang-cheng-yuan-li/">
                     <div class="card-image">
@@ -520,9 +853,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -535,7 +868,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -559,7 +891,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/2022/02/15/shu-xue-jian-mo-yu-ying-yong-zong-jie/">
@@ -592,6 +924,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
