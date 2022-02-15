@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 闲居">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="弹道方程以及代码实现, 闲居">
+    <meta name="description" content="本文将从头且十分详细地解析弹道方程以及其应用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 闲居</title>
+    <title>弹道方程以及代码实现 | 闲居</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="闲居" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.0.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="闲居" type="application/atom+xml">
+</head>
 
 
 
@@ -257,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">弹道方程以及代码实现</h1>
                 </div>
             </div>
         </div>
@@ -272,116 +272,43 @@
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        padding: 35px 0 15px 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content {
-        padding-bottom: 30px;
-        overflow: auto;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-
-        position: absolute;
-        right: 23.5vw;
-        display: block;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RoboMaster/">
+                                <span class="chip bg-color">RoboMaster</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BE%85%E7%9E%84/">
+                                <span class="chip bg-color">辅瞄</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                RoboMaster
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -390,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-13
+                    2022-02-15
                 </div>
                 
 
@@ -411,19 +338,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="弹道方程以及代码实现"><a href="#弹道方程以及代码实现" class="headerlink" title="弹道方程以及代码实现"></a>弹道方程以及代码实现</h1><h2 id="什么是弹道方程？"><a href="#什么是弹道方程？" class="headerlink" title="什么是弹道方程？"></a>什么是弹道方程？</h2><p>弹道方程，就是使用数学模型来量化子弹在空气阻力作用下地运动轨迹。这听起来十分复杂，但其实际上其算法核心是依托于我们初中学过的斜抛运动</p>
+<p><img src="/dandao/1.png" alt="弹道示意图"></p>
+<p>现在，我们假设子弹从A点出发，需要击打C点，在重力加速度和空气阻力的作用下，我们不可能使子弹的初速度直接指向AC方向，而是使子弹的发射方向偏离AC方向$\beta$角度，这样才能确保子弹能以优美的弧线直接击打中C点。弹道方程的核心便是求解$\beta$角</p>
+<h2 id="忽略空气阻力的弹道方程建模"><a href="#忽略空气阻力的弹道方程建模" class="headerlink" title="忽略空气阻力的弹道方程建模"></a>忽略空气阻力的弹道方程建模</h2><ol>
+<li><p>首先对初速度V进行速度分解</p>
+<p> $$<br> \begin{cases}<br>     v_x&#x3D;v\cos\alpha \<br>     v_y&#x3D;v\sin\alpha<br> \end{cases}<br> $$</p>
+</li>
+<li><p>由于水平上不受力的作用(忽略了空气阻力),故</p>
+<ul>
+<li><p>飞行时间 $t&#x3D;\frac{f}{v_x}&#x3D;\frac{f}{v\cos\alpha}$ (f为如图的水平距离)</p>
+</li>
+<li><p>子弹击打中的高度h&#x3D;$v_yt-\frac{1}{2}gt^2&#x3D;v\sin\alpha<em>\frac{f}{v\cos\alpha}-\frac{1}{2}g</em>(\frac{f}{v\cos\alpha})^2&#x3D;f\tan\alpha-\frac{1}{2}g*(\frac{f}{v\cos\alpha})^2$</p>
+</li>
+</ul>
+</li>
+<li><p>求解：先来分析已知条件以及目的参数，我们已经计算得到了C点相对于A点的位置，那么h和f已知，有重力加速度已知，目标是求解$\alpha$,这容易得到$\alpha$的解析式，下面利用高斯牛顿法迭代求解$\alpha$</p>
+</li>
+<li><p>高斯牛顿法求解方程</p>
+<ul>
+<li><p>首先构造残差函数</p>
+<p>  $$<br>  \lvert\lvert e \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual}-h_{calc} \rvert\rvert ^2<br>  $$</p>
+<p>  其中$ h_{actual} $ 为已知值， $ h_{calc} $ 是使用迭代法逐渐逼近的h值</p>
+<p>  我们的目标是</p>
+<p>  $$<br>  \min \lvert\lvert e \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual}-h_{calc} \rvert\rvert ^2 &#x3D; \lvert\lvert h_{actual} - f\tan\alpha+\frac{1}{2}g*(\frac{f}{v\cos\alpha})^2 \rvert\rvert ^2<br>  $$</p>
+<p>  以此来达到使用计算机迭代逼近$ h_{actual} $的目的</p>
+</li>
+<li><p>对误差函数e进行泰勒展开，则：</p>
+<p>  $$<br>  e(\theta + \Delta\theta)&#x3D;e(\theta)+\frac{\delta e}{\delta \theta}*d\theta<br>  $$</p>
+</li>
+<li><p>那么近似的误差函数可以写为(对内部进行泰勒展开并且将整个式子展开)</p>
+<p>  $$<br>  \lvert\lvert e(\theta + \Delta\theta) \rvert\rvert ^2 &#x3D; e^2 + 2e \frac{\delta e}{\delta \theta} \Delta\theta + (\frac{\delta e}{\delta \theta} )^2 (\Delta \theta)^2<br>  $$</p>
+</li>
+<li><p>对于这个方程,$ e(\theta + \Delta\theta) $ 表示当e加上一个微小变量时e的变化幅度，当e最小时，有那么$ d e(\theta + \Delta\theta) &#x3D; 0 $ ,解得 </p>
+<p>  $$<br>  \Delta \theta &#x3D; -\frac{e}{\frac{\delta e}{\delta\theta}}<br>  $$</p>
+</li>
+<li><p>$\Delta \theta$变化的方向是使误差函数趋于最小值的方向，那么</p>
+<p>  $$<br>  \theta_{update}&#x3D; \theta + \Delta\theta<br>  $$</p>
+</li>
+</ul>
+</li>
+</ol>
 
                 
             </div>
@@ -450,7 +405,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://XianMengxi.github.io/2022/02/13/hello-world/">https://XianMengxi.github.io/2022/02/13/hello-world/</a>
+                    <a href="https://XianMengxi.github.io/2022/02/15/dan-dao-fang-cheng-yi-ji-dai-ma-shi-xian/">https://XianMengxi.github.io/2022/02/15/dan-dao-fang-cheng-yi-ji-dai-ma-shi-xian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -487,7 +442,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/RoboMaster/">
+                                    <span class="chip bg-color">RoboMaster</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BE%85%E7%9E%84/">
+                                    <span class="chip bg-color">辅瞄</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -533,39 +500,57 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/13/hello-world/">
+                <a href="/2022/02/15/dan-dao-fang-cheng-li-lun/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="弹道方程以及代码实现">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">弹道方程以及代码实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            本文将从头且十分详细地解析弹道方程以及其应用
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-13
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            闲梦溪
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BE%85%E7%9E%84/">
+                        <span class="chip bg-color">辅瞄</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -576,34 +561,54 @@
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/13/hello-world/">
+                <a href="/2022/02/15/dan-dao-fang-cheng-yi-ji-dai-ma-shi-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="弹道方程以及代码实现">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">弹道方程以及代码实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            本文将从头且十分详细地解析弹道方程以及其应用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            闲梦溪
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BE%85%E7%9E%84/">
+                        <span class="chip bg-color">辅瞄</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -632,100 +637,6 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
-
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget card" style="background-color: white;">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
 
     
 
