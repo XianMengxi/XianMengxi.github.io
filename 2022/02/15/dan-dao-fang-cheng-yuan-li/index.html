@@ -340,7 +340,7 @@
             <div id="articleContent">
                 <h1 id="弹道方程以及代码实现"><a href="#弹道方程以及代码实现" class="headerlink" title="弹道方程以及代码实现"></a>弹道方程以及代码实现</h1><h2 id="什么是弹道方程？"><a href="#什么是弹道方程？" class="headerlink" title="什么是弹道方程？"></a>什么是弹道方程？</h2><p>弹道方程，就是使用数学模型来量化子弹在空气阻力作用下的运动轨迹。这听起来十分复杂，但其实际上其算法核心是依托于我们初中学过的斜抛运动,并没有想象之中的那么深奥。</p>
 <p><img src="/2022/02/15/dan-dao-fang-cheng-yuan-li/1.png" alt="弹道示意图"></p>
-<p>现在，我们假设子弹从A点出发，需要击打B点，在重力加速度和空气阻力的作用下，我们不可能使子弹的初速度直接指向AB方向，而是使子弹的发射方向偏离AC方向$\alpha$角度，这样才能确保子弹能以优美的弧线直接击打中C点。弹道方程的核心便是求解$\alpha$角</p>
+<p>现在，我们假设子弹从A点出发，需要击打B点，在重力加速度和空气阻力的作用下，我们不可能使子弹的初速度直接指向AB方向，而是使子弹的发射方向偏离AC方向$\alpha$角度，这样才能确保子弹能以优美的弧线直接击打中B点。弹道方程的核心便是求解$\alpha$角</p>
 <h2 id="忽略空气阻力的弹道方程建模"><a href="#忽略空气阻力的弹道方程建模" class="headerlink" title="忽略空气阻力的弹道方程建模"></a>忽略空气阻力的弹道方程建模</h2><ol>
 <li><p>首先对初速度V进行速度分解</p>
 <p> $$<br> \begin{cases}<br>     v_x&#x3D;v\cos\alpha \<br>     v_y&#x3D;v\sin\alpha<br> \end{cases}<br> $$</p>
@@ -576,7 +576,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文将从头且十分详细地解析弹道方程以及其应用
+                            司守奎的《数学建模》黄书总结
                         
                     </div>
                     <div class="publish-info">
