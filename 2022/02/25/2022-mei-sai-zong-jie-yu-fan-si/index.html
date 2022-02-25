@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="多线程资源共享, 闲居">
-    <meta name="description" content="使用不同的方法处理数据竞争问题(生产者-消费者模型)">
+    <meta name="keywords" content="2022年美赛总结与反思, 闲居">
+    <meta name="description" content="本文将总结完成2022美赛c题的整个过程，特别是自己的心理历程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>多线程资源共享 | 闲居</title>
+    <title>2022年美赛总结与反思 | 闲居</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -257,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/03.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/04.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">多线程资源共享</h1>
+                    <h1 class="description center-align post-title">2022年美赛总结与反思</h1>
                 </div>
             </div>
         </div>
@@ -284,16 +284,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/RoboMaster/">
-                                <span class="chip bg-color">RoboMaster</span>
+                            <a href="/tags/%E7%BE%8E%E8%B5%9B/">
+                                <span class="chip bg-color">美赛</span>
                             </a>
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
+                            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                <span class="chip bg-color">数学建模</span>
                             </a>
                         
-                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                                <span class="chip bg-color">多线程</span>
+                            <a href="/tags/%E6%84%9F%E6%82%9F/">
+                                <span class="chip bg-color">感悟</span>
                             </a>
                         
                     </div>
@@ -304,8 +304,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/RoboMaster/" class="post-category">
-                                RoboMaster
+                            <a href="/categories/%E7%BE%8E%E8%B5%9B/" class="post-category">
+                                美赛
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-24
+                    2022-02-25
                 </div>
                 
 
@@ -338,122 +338,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="c-线程资源共享"><a href="#c-线程资源共享" class="headerlink" title="c++线程资源共享"></a>c++线程资源共享</h1><p>我们知道，在多线程中，如果两个线程都使用到了同一份资源，那么这两个线程对资源修改和使用的先后顺序是不确定的。</p>
-<p>比如有一副1024*1280的图像，一个线程需要不断地更新图像，另一个线程需要使用这个图像并且将其显示出来。如果修改图像的线程运行到一半的时候，显示图像的线程就将数据提取出来显示，那么就可能产生图像残缺的现象。这会对我们的应用产生不可预测的结果。这种线程相互争夺资源的现象，被称为线程不安全。</p>
-<p>要想安全地使用资源，那么就必须设计一定的规则，使得到资源的线程处理；没有得到资源的线程休眠，以此达到线程安全和充分利用cpu的目的。</p>
+                <h1 id="2022年美赛总结与反思"><a href="#2022年美赛总结与反思" class="headerlink" title="2022年美赛总结与反思"></a>2022年美赛总结与反思</h1><p>2022年2月22号早上2点，我们匆匆忙忙地完成了论文，在提交完论文的一刹那，我心中的紧张情绪瞬间得以释放。但是，那一刻，即便我知道这篇论文写得很水，并且能够获奖的概率也微乎其微的情况之下，我仍然没有半点兴奋或者是遗憾。那天晚上我也没有多想，第二天除了比往常要更困一点，也并没有什么不同。</p>
+<p>也许，我并不属于那里。或者说，我的心根本就不在那里。会报名美赛，很单纯就是因为这个比赛容易获奖并且获奖之后能够对自己的保研加分有帮助而已。也正是这个原因，这个比赛的过程使我很痛苦。哪怕是在模型完成的那一刻，我也没有感到兴奋。因为，我清楚地知道，我不过是在做一件自己不喜欢的事情罢了。</p>
 <hr>
-<h2 id="使用互斥锁mutex"><a href="#使用互斥锁mutex" class="headerlink" title="使用互斥锁mutex"></a>使用互斥锁mutex</h2><p><a target="_blank" rel="noopener" href="https://qingcms.gitee.io/cppreference/20210212/zh/cpp/thread/mutex.html">c++ mutex使用手册</a></p>
-<p>基础用法：</p>
-<pre class=" language-cpp"><code class="language-cpp">    std<span class="token operator">::</span>mutex your_mutex<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//定义你的锁</span>
-
-    your_mutex<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//上锁</span>
-
-    <span class="token comment" spellcheck="true">//使用你的资源</span>
-
-    your_mutex<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-</code></pre>
-<p>注意同一份资源应该使用同一个锁</p>
-<p>当一个线程调用这个锁对象的lock()函数之后，如果第二个线程也调用了lock函数，那么第二个线程就会”被迫等待”，类似于进入一个while循环，直到第一个线程调用unlock()函数。</p>
-<p>使用互斥锁之后，就能保证每一个时刻都最多只有一个线程在处理这份资源。</p>
-<p>mutex的缺点：等待资源的线程会频繁唤醒cpu，导致程序的性能下降。</p>
+<h2 id="比赛准备与个人理解"><a href="#比赛准备与个人理解" class="headerlink" title="比赛准备与个人理解"></a>比赛准备与个人理解</h2><p>我们的队伍在前期并没有做好充分的准备，我们三个人都没有参加数学建模的经历，因此都对数学建模的整个流程都十分模糊。选择c题的理由也不过是因为所有题目对于我们来说都没有什么不同而已。</p>
+<p>在寒假之前，我就已经抽空学习了司守奎老师的《数学建模与应用》，了解了基本的建模方法以及数据分析方法。但是，数学并不是一天两天就能掌握的，在缺乏练习的情况之下(基本没有打过代码，或者独立推导公式)，我感觉对这些知识的掌握很飘，其实说白了就是没学懂。但是，为了掌握整个知识框架(我一直认为掌握了整个框架之后，学习一些框架之内的内容就是水到渠成的事情)，我也只能硬着头皮学了下去，结果到头来什么也没学好。</p>
+<p>不过，在后来的备赛过程中，我发现，大多数书本里的算法都是用不上的。而且，数学建模里体现的不是你对这个算法的理解，而是你对这个算法的运用。换言之，你不需要理解算法内部的运行机制，你只需要知道，你这么用就能达到你的目的，你只需要使用别人写好的算法接口直接调用就行。当然我也知道在四天之内独立构造自己的模型并且写好代码这件事本身就是强人所难，但是，如果只是了解算法怎么用而不去了解算法的本质的话，那么数学建模就可能变成很多人对算法的”堆砌“比赛，而不能起到帮助我们理解算法本质并实现创新。</p>
 <hr>
-<h2 id="条件变量-智能锁"><a href="#条件变量-智能锁" class="headerlink" title="条件变量+智能锁"></a>条件变量+智能锁</h2><p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/thread/condition_variable.html">c++ 条件变量使用手册</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/thread/unique_lock.html">c++ unique_lock使用手册</a></p>
-<p>使用互斥锁可能会造成死锁的情况，即上锁之后忘记解锁，导致资源一直不能释放，等待资源的线程卡死。</p>
-<p>使用互斥锁导致频繁唤醒cpu会导致性能消耗极大。</p>
-<p>使用条件变量和智能锁能一定程度上解决这些问题</p>
-<p>使用智能锁unique_lock能够在这把锁的声明周期过后自动释放，故避免了死锁的问题</p>
-<p>使用条件变量，当生产者生产完之后，给消费者一个信号，消费者才可以进行处理，否则的话，消费者会一直休眠。使用这种方法，降低了唤醒cpu的频率。导致程序的性能提高。</p>
-<p>有了条件变量还需要使用锁的原因是条件变量可能会误唤醒，加锁是第二层保障</p>
-<p>基本使用(生产者)</p>
-<pre class=" language-cpp"><code class="language-cpp">    std<span class="token operator">::</span>condition_variable cond<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//cond为线程之间共享的变量</span>
-    <span class="token punctuation">{</span>
-        std<span class="token operator">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> my_lock<span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//生产资源</span>
-
-        cond<span class="token punctuation">.</span><span class="token function">notify_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//唤醒等待的线程</span>
-    <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//过了unique_lock的生命周期之后，锁自动释放</span>
-</code></pre>
-<pre class=" language-cpp"><code class="language-cpp">    std<span class="token operator">::</span>condition_variable cond<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//cond为线程之间共享的变量</span>
-    <span class="token punctuation">{</span>
-        std<span class="token operator">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> my_lock<span class="token punctuation">;</span>
-
-        cond<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//等待资源</span>
-
-        <span class="token comment" spellcheck="true">//消费资源</span>
-    <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//过了unique_lock的生命周期之后，锁自动释放</span>
-</code></pre>
-<p>条件变量和智能锁一定程度上提高了程序的性能，但由于还带锁，锁造成的低性能仍然没有发生本质上的改变。如果要使程序处于无锁的良好环境，减少数据竞争的话，需要使用到原子变量的无锁编程。</p>
+<h2 id="比赛过程"><a href="#比赛过程" class="headerlink" title="比赛过程"></a>比赛过程</h2><p>比赛第一天，我和建模的队友意见产生了分歧。我觉得应该使用时间序列预测+动态规划来求解，而队友觉得应该使用主成分分析的办法。最后我们采用了我的模型。</p>
+<p>比赛第二天，我写好了动态规划的代码，但是，由于预测的不准确(实则上股市不可能做到预测准确会有不确定的白噪声)，加上评分函数的不确定(我个人的能力有限)，迟迟不能将模型建好。这时候，我已经在反思，动态规划是不是行不通？但是，我比较头铁，毕竟都干了一整天了，不能让自己的努力白费，然后又疯狂构建评价函数，最后都失败了。那一天，我几乎毫无进展。</p>
+<p>比赛第三天，我仍然不死心，又干了一个上午，仍然没有构造出来。这才彻底死心。并且，在漫长的查资料过程之中，我看到了很多关于动态规划，神经网络对股市无效的论文，更加坚定了我修改模型的决心。在那个时候，比赛都快结束了，模型还没建立好，我怎么给整个队伍一个交代？我记得当时压力特别大，想着如果那天不能建立模型，那么这次比赛就玩完了。即便是如此，我也告诉自己，必须静下心来学习一些简单的”量化交易策略“(实际上量化交易策略经过社会实践的检验，比你在一两天想到的算法要更优)，于是找到了双均线策略等等的基础策略与代码。为了强制让模型看起来丰满一点又强制加上了唐其安通道，上下止损策略等等来做”组合规划“等等(即便我觉得不是很合理，不过在当时时间紧急状况之下只能胡言乱语了）。那天晚上11点，我才完成了模型，并且画出了几幅颜值比较低的图。模型建立也算不怎么体面地完成了。</p>
+<p>比赛第四天，1-8节课要上课，我没有逃课或者请假，老老实实地听课(虽然没听进去几句就是了)。然后下午六点的时候，开始了肝论文。那时候我们的意见出现了一点分歧，我想用latex排版，但是队友觉得应该使用word排版，他们之前写的一部分论文也是用word排版的。我觉得latex排版本身就比较方便了，而且那时候我也没想到做完一整篇论文需要花费大量的精力,所以我就提议我来排版，他们来将每一个模块写好(如果再来一次，我一定不坚持用latex了，因为当时只有我会用latex(其实我也是现学的)，导致后期工作交接都比较困难)。我们在八小时内肝完了论文，完成得匆匆忙忙，也没有回看一遍论文，草草提交了论文。</p>
 <hr>
-<h2 id="无锁循环队列"><a href="#无锁循环队列" class="headerlink" title="无锁循环队列"></a>无锁循环队列</h2><p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/atomic/atomic.html">c++ atomic使用手册</a></p>
-<p>要很好地理解以下的代码，就先要了解原子变量内存模型。某个语句f中的一个变量a在下面代码有依赖的意思是下面某句代码g直接或者间接用到了变量a,故编译器会自动将g代码语句放在f后面。否则的话编译器可以自动安排语句的执行顺序，来提高代码的运行效率。</p>
-<p>以下代码适用于生产者-消费者模型</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">ifndef</span> _LOCKFREE_QUEUE_</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> _LOCKFREE_QUEUE_</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;atomic></span>   </span><span class="token comment" spellcheck="true">//原子标准库</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> FIXED_NUM 16 </span><span class="token comment" spellcheck="true">//设置为2的整数次方 方便处理，因为对2的整数次方作除法可以用左移表示</span>
-    <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span> <span class="token comment" spellcheck="true">//模板类，T为你需要共享的数据类型</span>
-    <span class="token keyword">class</span> <span class="token class-name">LockFreeQueue</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">struct</span> Element
-        <span class="token punctuation">{</span>
-            T data_<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//数据存储区</span>
-            std<span class="token operator">::</span>atomic<span class="token operator">&lt;</span><span class="token keyword">bool</span><span class="token operator">></span> is_full<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//是否有数据</span>
-        <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span><span class="token operator">:</span>
-        <span class="token function">LockFreeQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">~</span><span class="token function">LockFreeQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">bool</span> <span class="token function">push</span><span class="token punctuation">(</span>T <span class="token operator">&amp;</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//入栈</span>
-        <span class="token keyword">bool</span> <span class="token function">pop</span><span class="token punctuation">(</span>T <span class="token operator">&amp;</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//出栈</span>
-        std<span class="token operator">::</span>atomic<span class="token operator">&lt;</span><span class="token keyword">short</span><span class="token operator">></span> write_index<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//写索引</span>
-        Element data_queue<span class="token punctuation">[</span>FIXED_NUM<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//固定大小的数组，通过write_index构成循环队列的效果</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-    LockFreeQueue<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span><span class="token function">LockFreeQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        write_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//初始化为0</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-    LockFreeQueue<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span><span class="token operator">~</span><span class="token function">LockFreeQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-    <span class="token keyword">bool</span> LockFreeQueue<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span><span class="token function">push</span><span class="token punctuation">(</span>T <span class="token operator">&amp;</span>input<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//由于后面的语句都对write_index_temp有依赖，故此处的内存模型可以忽略，或者说用什么都行</span>
-        <span class="token keyword">short</span> write_index_temp <span class="token operator">=</span> write_index<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>std<span class="token operator">::</span>memory_order_relaxed<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        data_queue<span class="token punctuation">[</span>write_index_temp<span class="token punctuation">]</span><span class="token punctuation">.</span>data_ <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//利用std::move可以加快处理速度，移动过后的对象input不再可用</span>
-        <span class="token comment" spellcheck="true">//memory_order_release内存模型强制前一条语句在这一条之前运行，即必须要修改完data_再将is_full置true</span>
-        data_queue<span class="token punctuation">[</span>write_index_temp<span class="token punctuation">]</span><span class="token punctuation">.</span>is_full<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> std<span class="token operator">::</span>memory_order<span class="token operator">::</span>memory_order_release<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        write_index_temp<span class="token operator">++</span><span class="token punctuation">;</span> 
-        write_index_temp <span class="token operator">%</span><span class="token operator">=</span> FIXED_NUM<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//构成循环</span>
-
-        <span class="token comment" spellcheck="true">//强制使write_index_temp修改后再运行，但其实由于write_index_temp用到了write_index_temp,故即使不用memory_order_release模型，也会在write_index_temp自增之后运行</span>
-        write_index<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span>write_index_temp<span class="token punctuation">,</span> std<span class="token operator">::</span>memory_order<span class="token operator">::</span>memory_order_release<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
-    <span class="token keyword">bool</span> LockFreeQueue<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span><span class="token function">pop</span><span class="token punctuation">(</span>T <span class="token operator">&amp;</span>output<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//索引到读取index的前一个，更好地达到同步的效果</span>
-        <span class="token keyword">short</span> read_index <span class="token operator">=</span> write_index<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>std<span class="token operator">::</span>memory_order<span class="token operator">::</span>memory_order_relaxed<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        read_index <span class="token operator">=</span> <span class="token punctuation">(</span>read_index <span class="token operator">+</span> FIXED_NUM <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> FIXED_NUM<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//强制后面的语句在这一条语句之后运行,即必须要is_full为true才执行后面的代码</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>data_queue<span class="token punctuation">[</span>read_index<span class="token punctuation">]</span><span class="token punctuation">.</span>is_full<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>std<span class="token operator">::</span>memory_order_acquire<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            output <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>data_queue<span class="token punctuation">[</span>read_index<span class="token punctuation">]</span><span class="token punctuation">.</span>data_<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//强制前面的代码在这句代码之前执行</span>
-            data_queue<span class="token punctuation">[</span>read_index<span class="token punctuation">]</span><span class="token punctuation">.</span>is_full<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> std<span class="token operator">::</span>memory_order<span class="token operator">::</span>memory_order_release<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token macro property">#<span class="token directive keyword">endif</span></span>
-</code></pre>
-<p>使用以上代码，当生产资源时，使用push函数；当消费资源时，使用pop函数</p>
+<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><p>记录心态爆炸的两次：第一次是第二天晚上发现整天都没有成果的时候，焦虑怎样才能建好模型。第二次是第四天晚上写论文的时候，因为眼睛看电脑的时间长了(酸痛)，实在看不下去了，但是因为只有我用latex(自己的埋下的坑自己填)，也不能交接，导致那个时候心态有点爆炸。</p>
+<p>跟队友沟通不好也是这次比赛一个很突出的问题，因为模型是我构建的，但是，对模型内容的书写是交给队友来做的，这就导致了，我建模的想法和队友所写的东西不是很契合(这个应该提前跟他们说明)。而且我们的任务分工不是很明确，导致最后拼成论文的时候还有没有写的部分，在那个每个人都迫切想要下班的时候，还需要加班最为致命。</p>
+<p>我们虽然基本完成了任务的问题，但是，在写论文的过程之中，我发现，我们的论文基本没有对算法给出精度分析或者其它的指标分析，我认为这样是十分不合理且不完善的，算法的结果也难以令人信服。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>十分感谢两位队友的付出，哪怕最后获不了奖，这也会是我们大学生活的一段独特的经历。在这个过程中，每个人都尽职尽责地完成了自己地任务，我觉得这样就已经足够了。</p>
+<p>这对于我来说是一段难忘的经历，虽然不是很美妙就是了。</p>
+<p>下一年不知道要不要继续参赛，也许会因为觉得枯燥而放弃参赛，也许会因为想要再拼一拼而再来一年，未来的事，谁知道呢？</p>
+<p>我一直想要追寻自己喜欢的东西。我拼命地学习知识，不过是为了能够用知识照亮自己的未来。</p>
+<p>无论如何，美赛已经落下帷幕，未来的路还很长，时间一刻也不会为我而停，我必须收拾包袱，前往更浩瀚的星辰大海。</p>
 
                 
             </div>
@@ -480,7 +385,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://XianMengxi.github.io/2022/02/24/xian-cheng-zi-yuan-gong-xiang/">https://XianMengxi.github.io/2022/02/24/xian-cheng-zi-yuan-gong-xiang/</a>
+                    <a href="https://XianMengxi.github.io/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/">https://XianMengxi.github.io/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,16 +423,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/RoboMaster/">
-                                    <span class="chip bg-color">RoboMaster</span>
+                                <a href="/tags/%E7%BE%8E%E8%B5%9B/">
+                                    <span class="chip bg-color">美赛</span>
                                 </a>
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
+                                <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                                    <span class="chip bg-color">数学建模</span>
                                 </a>
                             
-                                <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                                    <span class="chip bg-color">多线程</span>
+                                <a href="/tags/%E6%84%9F%E6%82%9F/">
+                                    <span class="chip bg-color">感悟</span>
                                 </a>
                             
                         </div>
@@ -575,9 +480,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/">
                     <div class="card-image">
@@ -594,9 +500,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -609,6 +515,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -635,30 +542,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/16/shu-xue-jian-mo-yu-ying-yong-zong-jie/">
+                <a href="/2022/02/24/xian-cheng-zi-yuan-gong-xiang/">
                     <div class="card-image">
                         
-                        <img src="/medias/images/02.jpg" class="responsive-img" alt="数学建模与应用总结">
+                        <img src="/medias/images/03.jpg" class="responsive-img" alt="多线程资源共享">
                         
-                        <span class="card-title">数学建模与应用总结</span>
+                        <span class="card-title">多线程资源共享</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            司守奎的《数学建模》黄书总结
+                            使用不同的方法处理数据竞争问题(生产者-消费者模型)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="post-category">
-                                    数学建模
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
                                 </a>
                             
                             
@@ -668,12 +575,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BE%8E%E8%B5%9B/">
-                        <span class="chip bg-color">美赛</span>
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
-                        <span class="chip bg-color">数学建模</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="chip bg-color">多线程</span>
                     </a>
                     
                 </div>
