@@ -6,7 +6,7 @@
   <link href="https://xianmengxi.github.io/atom.xml" rel="self"/>
   
   <link href="https://xianmengxi.github.io/"/>
-  <updated>2022-02-25T15:22:17.274Z</updated>
+  <updated>2022-02-26T19:53:04.207Z</updated>
   <id>https://xianmengxi.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PNP深度不确定性导致的拟合轨迹误差影响测定</title>
+    <link href="https://xianmengxi.github.io/2022/02/27/pnp-da-fu-shen-du-ce-shi/"/>
+    <id>https://xianmengxi.github.io/2022/02/27/pnp-da-fu-shen-du-ce-shi/</id>
+    <published>2022-02-27T04:00:00.000Z</published>
+    <updated>2022-02-26T19:53:04.207Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PNP深度不确定性对大符轨迹拟合的影响"><a href="#PNP深度不确定性对大符轨迹拟合的影响" class="headerlink" title="PNP深度不确定性对大符轨迹拟合的影响"></a>PNP深度不确定性对大符轨迹拟合的影响</h1><h2 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h2><p>在拟合大符三维运动轨迹的过程之中，需要利用到PNP计算的z轴信息，但是，由于图像处理的不稳定性，装甲板在图像中的位置可能会和真实值偏离1个像素左右，这导致了击打大符的过程z轴距离计算误差特别大(由小孔成像原理)</p><p>以下为使用8mm镜头的计算，具体参考<a href="https://www.jianshu.com/p/83b509953198">能量机关任务参考</a><br><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/1.png"></p><p>因为步兵离装甲板中心的x轴距离只有大概0.7m(大符半径),y轴距离也就是1.多米，这是深度的$\frac{1}{8}$,故定位误差大概是2cm以内，这是可以接受的。</p><p>故问题的核心在于PNP的深度误差会对三维圆拟合产生多大的影响，且主要是考察x,y轴的预测(主要要对准位置，高度不对的话可以利用补偿来解决)</p><h2 id="模拟误差测定"><a href="#模拟误差测定" class="headerlink" title="模拟误差测定"></a>模拟误差测定</h2><ul><li><p>首先构造离散点，对x,y轴数据不作噪声处理，z轴数据在8m基础上加上10cm的高斯噪声，以此为基础拟合三维圆</p></li><li><p>参数设置:</p><ol><li>使用多少个数据拟合</li><li>使用多长的数据进行拟合(一个圆的半周或者是$\frac{1}{4}$周)</li></ol></li></ul><p>在此基础上绘制构造的离散点以及拟合的圆</p><p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/2.png"></p><table><thead><tr><th></th><th>Actual</th><th>Curve</th></tr></thead><tbody><tr><td>radius</td><td>0.7</td><td>0.688017</td></tr><tr><td>center</td><td>(0,0,8.0)</td><td>(0.00747922, 0.000957649, 7.99978)</td></tr><tr><td>x_axis</td><td>(0,1,0)</td><td>(-0, 0.99999, 0.00450011)</td></tr><tr><td>y_axis</td><td>(-1,0,0)</td><td>(-0.9988,0.000435318,-0.0489809 )</td></tr></tbody></table><p>利用半周来对圆进行拟合，圆半径设定为0.7m,设定z轴8m为均值，10cm为标准差的高斯噪声</p><p>从结果中发现，对z轴加上噪声之后，所拟合出来的圆形是能够符合基本的精度要求的，这说明了即使PNP精度不够，只要数据足够多，误差分布比较均匀的话，拟合并不会因为此产生很大的偏差，因此初步认为该方案在实际中测试也应该能满足要求。</p><p>问题：如果数据量较少，或者使用的圆转动小于半周的话，拟合出来的圆误差十分大。需要满足精度要求的话就必须加大数据量，这样的话会对拟合速度产生致命的影响</p><h2 id="实际测试过程"><a href="#实际测试过程" class="headerlink" title="实际测试过程"></a>实际测试过程</h2><p>使用80帧对实际PNP数据进行拟合，拟合得到的结果如图</p><p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/3.png"></p><p>切换视图</p><p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/4.png"></p><p>可以看到，拟合实际上比较准确地得到了圆的法向量，但是，由于有一个轴的测量误差抖动过大，导致数据过于离散，实际上很难找到一个合适的轨迹圆</p><p>以下是完整的轨迹与拟合的对比</p><p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/5.png"></p><p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/6.png"></p><ul><li><p>可能的解决方案</p><ol><li><p>直接使用这个拟合圆来处理，由于所得到的法向量实际上是比较正确的，实际击打的方向也应该是正确的，也有可能能够正确击打中目标，不过击打的精度不能够保证</p></li><li><p>换用识别R来进行轨迹预测，利用中心R的好处是能够实时更新轨迹，不至于因为错误的轨迹导致击打失败</p></li><li><p>由于得到了比较正确的法向量，可以将空间中的点投影到与法向量垂直的平面上进行圆拟合，难点是不知道该平面的具体位置(平面的方向已经确定)</p></li></ol></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;PNP深度不确定性对大符轨迹拟合的影响&quot;&gt;&lt;a href=&quot;#PNP深度不确定性对大符轨迹拟合的影响&quot; class=&quot;headerlink&quot; title=&quot;PNP深度不确定性对大符轨迹拟合的影响&quot;&gt;&lt;/a&gt;PNP深度不确定性对大符轨迹拟合的影响&lt;/h1&gt;&lt;h2 i</summary>
+      
+    
+    
+    
+    <category term="RoboMaster" scheme="https://xianmengxi.github.io/categories/RoboMaster/"/>
+    
+    
+    <category term="RoboMaster" scheme="https://xianmengxi.github.io/tags/RoboMaster/"/>
+    
+    <category term="大符" scheme="https://xianmengxi.github.io/tags/%E5%A4%A7%E7%AC%A6/"/>
+    
+    <category term="PNP" scheme="https://xianmengxi.github.io/tags/PNP/"/>
+    
+  </entry>
   
   <entry>
     <title>2022年美赛总结与反思</title>

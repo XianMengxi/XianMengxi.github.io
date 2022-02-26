@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="2022年美赛总结与反思, 闲居">
-    <meta name="description" content="本文将总结完成2022美赛c题的整个过程，特别是自己的心理历程">
+    <meta name="keywords" content="PNP深度不确定性导致的拟合轨迹误差影响测定, 闲居">
+    <meta name="description" content="PNP计算深度出现误差对三维圆拟合的影响">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>2022年美赛总结与反思 | 闲居</title>
+    <title>PNP深度不确定性导致的拟合轨迹误差影响测定 | 闲居</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -257,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/04.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/05.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">2022年美赛总结与反思</h1>
+                    <h1 class="description center-align post-title">PNP深度不确定性导致的拟合轨迹误差影响测定</h1>
                 </div>
             </div>
         </div>
@@ -284,16 +284,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%BE%8E%E8%B5%9B/">
-                                <span class="chip bg-color">美赛</span>
+                            <a href="/tags/RoboMaster/">
+                                <span class="chip bg-color">RoboMaster</span>
                             </a>
                         
-                            <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
-                                <span class="chip bg-color">数学建模</span>
+                            <a href="/tags/%E5%A4%A7%E7%AC%A6/">
+                                <span class="chip bg-color">大符</span>
                             </a>
                         
-                            <a href="/tags/%E6%84%9F%E6%82%9F/">
-                                <span class="chip bg-color">感悟</span>
+                            <a href="/tags/PNP/">
+                                <span class="chip bg-color">PNP</span>
                             </a>
                         
                     </div>
@@ -304,8 +304,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BE%8E%E8%B5%9B/" class="post-category">
-                                美赛
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                RoboMaster
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-25
+                    2022-02-27
                 </div>
                 
 
@@ -338,27 +338,74 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2022年美赛总结与反思"><a href="#2022年美赛总结与反思" class="headerlink" title="2022年美赛总结与反思"></a>2022年美赛总结与反思</h1><p>2022年2月22号早上2点，我们匆匆忙忙地完成了论文，在提交完论文的一刹那，我心中的紧张情绪瞬间得以释放。但是，那一刻，即便我知道这篇论文写得很水，并且能够获奖的概率也微乎其微的情况之下，我仍然没有半点兴奋或者是遗憾。那天晚上我也没有多想，第二天除了比往常要更困一点，也并没有什么不同。</p>
-<p>也许，我并不属于那里。或者说，我的心根本就不在那里。会报名美赛，很单纯就是因为这个比赛容易获奖并且获奖之后能够对自己的保研加分有帮助而已。也正是这个原因，这个比赛的过程使我很痛苦。哪怕是在模型完成的那一刻，我也没有感到兴奋。因为，我清楚地知道，我不过是在做一件自己不喜欢的事情罢了。</p>
-<hr>
-<h2 id="比赛准备与个人理解"><a href="#比赛准备与个人理解" class="headerlink" title="比赛准备与个人理解"></a>比赛准备与个人理解</h2><p>我们的队伍在前期并没有做好充分的准备，我们三个人都没有参加数学建模的经历，因此都对数学建模的整个流程都十分模糊。选择c题的理由也不过是因为所有题目对于我们来说都没有什么不同而已。</p>
-<p>在寒假之前，我就已经抽空学习了司守奎老师的《数学建模与应用》，了解了基本的建模方法以及数据分析方法。但是，数学并不是一天两天就能掌握的，在缺乏练习的情况之下(基本没有打过代码，或者独立推导公式)，我感觉对这些知识的掌握很飘，其实说白了就是没学懂。但是，为了掌握整个知识框架(我一直认为掌握了整个框架之后，学习一些框架之内的内容就是水到渠成的事情)，我也只能硬着头皮学了下去，结果到头来什么也没学好。</p>
-<p>不过，在后来的备赛过程中，我发现，大多数书本里的算法都是用不上的。而且，数学建模里体现的不是你对这个算法的理解，而是你对这个算法的运用。换言之，你不需要理解算法内部的运行机制，你只需要知道，你这么用就能达到你的目的，你只需要使用别人写好的算法接口直接调用就行。当然我也知道在四天之内独立构造自己的模型并且写好代码这件事本身就是强人所难，但是，如果只是了解算法怎么用而不去了解算法的本质的话，那么数学建模就可能变成很多人对算法的”堆砌“比赛，而不能起到帮助我们理解算法本质并实现创新。</p>
-<hr>
-<h2 id="比赛过程"><a href="#比赛过程" class="headerlink" title="比赛过程"></a>比赛过程</h2><p>比赛第一天，我和建模的队友意见产生了分歧。我觉得应该使用时间序列预测+动态规划来求解，而队友觉得应该使用主成分分析的办法。最后我们采用了我的模型。</p>
-<p>比赛第二天，我写好了动态规划的代码，但是，由于预测的不准确(实则上股市不可能做到预测准确会有不确定的白噪声)，加上评分函数的不确定(我个人的能力有限)，迟迟不能将模型建好。这时候，我已经在反思，动态规划是不是行不通？但是，我比较头铁，毕竟都干了一整天了，不能让自己的努力白费，然后又疯狂构建评价函数，最后都失败了。那一天，我几乎毫无进展。</p>
-<p>比赛第三天，我仍然不死心，又干了一个上午，仍然没有构造出来。这才彻底死心。并且，在漫长的查资料过程之中，我看到了很多关于动态规划，神经网络对股市无效的论文，更加坚定了我修改模型的决心。在那个时候，比赛都快结束了，模型还没建立好，我怎么给整个队伍一个交代？我记得当时压力特别大，想着如果那天不能建立模型，那么这次比赛就玩完了。即便是如此，我也告诉自己，必须静下心来学习一些简单的”量化交易策略“(实际上量化交易策略经过社会实践的检验，比你在一两天想到的算法要更优)，于是找到了双均线策略等等的基础策略与代码。为了强制让模型看起来丰满一点又强制加上了唐其安通道，上下止损策略等等来做”组合规划“等等(即便我觉得不是很合理，不过在当时时间紧急状况之下只能胡言乱语了）。那天晚上11点，我才完成了模型，并且画出了几幅颜值比较低的图。模型建立也算不怎么体面地完成了。</p>
-<p>比赛第四天，1-8节课要上课，我没有逃课或者请假，老老实实地听课(虽然没听进去几句就是了)。然后下午六点的时候，开始了肝论文。那时候我们的意见出现了一点分歧，我想用latex排版，但是队友觉得应该使用word排版，他们之前写的一部分论文也是用word排版的。我觉得latex排版本身就比较方便了，而且那时候我也没想到做完一整篇论文需要花费大量的精力,所以我就提议我来排版，他们来将每一个模块写好(如果再来一次，我一定不坚持用latex了，因为当时只有我会用latex(其实我也是现学的)，导致后期工作交接都比较困难)。我们在八小时内肝完了论文，完成得匆匆忙忙，也没有回看一遍论文，草草提交了论文。</p>
-<hr>
-<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><p>记录心态爆炸的两次：第一次是第二天晚上发现整天都没有成果的时候，焦虑怎样才能建好模型。第二次是第四天晚上写论文的时候，因为眼睛看电脑的时间长了(酸痛)，实在看不下去了，但是因为只有我用latex(自己的埋下的坑自己填)，也不能交接，导致那个时候心态有点爆炸。</p>
-<p>跟队友沟通不好也是这次比赛一个很突出的问题，因为模型是我构建的，但是，对模型内容的书写是交给队友来做的，这就导致了，我建模的想法和队友所写的东西不是很契合(这个应该提前跟他们说明)。而且我们的任务分工不是很明确，导致最后拼成论文的时候还有没有写的部分，在那个每个人都迫切想要下班的时候，还需要加班最为致命。</p>
-<p>我们虽然基本完成了任务的问题，但是，在写论文的过程之中，我发现，我们的论文基本没有对算法给出精度分析或者其它的指标分析，我认为这样是十分不合理且不完善的，算法的结果也难以令人信服。</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>十分感谢两位队友的付出，哪怕最后获不了奖，这也会是我们大学生活的一段独特的经历。在这个过程中，每个人都尽职尽责地完成了自己地任务，我觉得这样就已经足够了。</p>
-<p>这对于我来说是一段难忘的经历，虽然不是很美妙就是了。</p>
-<p>下一年不知道要不要继续参赛，也许会因为觉得枯燥而放弃参赛，也许会因为想要再拼一拼而再来一年，未来的事，谁知道呢？</p>
-<p>我一直想要追寻自己喜欢的东西。我拼命地学习知识，不过是为了能够用知识照亮自己的未来。</p>
-<p>无论如何，美赛已经落下帷幕，未来的路还很长，时间一刻也不会为我而停，我必须收拾包袱，前往更浩瀚的星辰大海。</p>
+                <h1 id="PNP深度不确定性对大符轨迹拟合的影响"><a href="#PNP深度不确定性对大符轨迹拟合的影响" class="headerlink" title="PNP深度不确定性对大符轨迹拟合的影响"></a>PNP深度不确定性对大符轨迹拟合的影响</h1><h2 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h2><p>在拟合大符三维运动轨迹的过程之中，需要利用到PNP计算的z轴信息，但是，由于图像处理的不稳定性，装甲板在图像中的位置可能会和真实值偏离1个像素左右，这导致了击打大符的过程z轴距离计算误差特别大(由小孔成像原理)</p>
+<p>以下为使用8mm镜头的计算，具体参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/83b509953198">能量机关任务参考</a><br><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/1.png"></p>
+<p>因为步兵离装甲板中心的x轴距离只有大概0.7m(大符半径),y轴距离也就是1.多米，这是深度的$\frac{1}{8}$,故定位误差大概是2cm以内，这是可以接受的。</p>
+<p>故问题的核心在于PNP的深度误差会对三维圆拟合产生多大的影响，且主要是考察x,y轴的预测(主要要对准位置，高度不对的话可以利用补偿来解决)</p>
+<h2 id="模拟误差测定"><a href="#模拟误差测定" class="headerlink" title="模拟误差测定"></a>模拟误差测定</h2><ul>
+<li><p>首先构造离散点，对x,y轴数据不作噪声处理，z轴数据在8m基础上加上10cm的高斯噪声，以此为基础拟合三维圆</p>
+</li>
+<li><p>参数设置:</p>
+<ol>
+<li>使用多少个数据拟合</li>
+<li>使用多长的数据进行拟合(一个圆的半周或者是$\frac{1}{4}$周)</li>
+</ol>
+</li>
+</ul>
+<p>在此基础上绘制构造的离散点以及拟合的圆</p>
+<p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/2.png"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Actual</th>
+<th>Curve</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>radius</td>
+<td>0.7</td>
+<td>0.688017</td>
+</tr>
+<tr>
+<td>center</td>
+<td>(0,0,8.0)</td>
+<td>(0.00747922, 0.000957649, 7.99978)</td>
+</tr>
+<tr>
+<td>x_axis</td>
+<td>(0,1,0)</td>
+<td>(-0, 0.99999, 0.00450011)</td>
+</tr>
+<tr>
+<td>y_axis</td>
+<td>(-1,0,0)</td>
+<td>(-0.9988,0.000435318,-0.0489809 )</td>
+</tr>
+</tbody></table>
+<p>利用半周来对圆进行拟合，圆半径设定为0.7m,设定z轴8m为均值，10cm为标准差的高斯噪声</p>
+<p>从结果中发现，对z轴加上噪声之后，所拟合出来的圆形是能够符合基本的精度要求的，这说明了即使PNP精度不够，只要数据足够多，误差分布比较均匀的话，拟合并不会因为此产生很大的偏差，因此初步认为该方案在实际中测试也应该能满足要求。</p>
+<p>问题：如果数据量较少，或者使用的圆转动小于半周的话，拟合出来的圆误差十分大。需要满足精度要求的话就必须加大数据量，这样的话会对拟合速度产生致命的影响</p>
+<h2 id="实际测试过程"><a href="#实际测试过程" class="headerlink" title="实际测试过程"></a>实际测试过程</h2><p>使用80帧对实际PNP数据进行拟合，拟合得到的结果如图</p>
+<p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/3.png"></p>
+<p>切换视图</p>
+<p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/4.png"></p>
+<p>可以看到，拟合实际上比较准确地得到了圆的法向量，但是，由于有一个轴的测量误差抖动过大，导致数据过于离散，实际上很难找到一个合适的轨迹圆</p>
+<p>以下是完整的轨迹与拟合的对比</p>
+<p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/5.png"></p>
+<p><img src="/2022/02/27/pnp-da-fu-shen-du-ce-shi/6.png"></p>
+<ul>
+<li><p>可能的解决方案</p>
+<ol>
+<li><p>直接使用这个拟合圆来处理，由于所得到的法向量实际上是比较正确的，实际击打的方向也应该是正确的，也有可能能够正确击打中目标，不过击打的精度不能够保证</p>
+</li>
+<li><p>换用识别R来进行轨迹预测，利用中心R的好处是能够实时更新轨迹，不至于因为错误的轨迹导致击打失败</p>
+</li>
+<li><p>由于得到了比较正确的法向量，可以将空间中的点投影到与法向量垂直的平面上进行圆拟合，难点是不知道该平面的具体位置(平面的方向已经确定)</p>
+</li>
+</ol>
+</li>
+</ul>
 
                 
             </div>
@@ -385,7 +432,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://XianMengxi.github.io/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/">https://XianMengxi.github.io/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/</a>
+                    <a href="https://XianMengxi.github.io/2022/02/27/pnp-da-fu-shen-du-ce-shi/">https://XianMengxi.github.io/2022/02/27/pnp-da-fu-shen-du-ce-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -423,16 +470,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%BE%8E%E8%B5%9B/">
-                                    <span class="chip bg-color">美赛</span>
+                                <a href="/tags/RoboMaster/">
+                                    <span class="chip bg-color">RoboMaster</span>
                                 </a>
                             
-                                <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
-                                    <span class="chip bg-color">数学建模</span>
+                                <a href="/tags/%E5%A4%A7%E7%AC%A6/">
+                                    <span class="chip bg-color">大符</span>
                                 </a>
                             
-                                <a href="/tags/%E6%84%9F%E6%82%9F/">
-                                    <span class="chip bg-color">感悟</span>
+                                <a href="/tags/PNP/">
+                                    <span class="chip bg-color">PNP</span>
                                 </a>
                             
                         </div>
@@ -480,9 +527,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/02/27/pnp-da-fu-shen-du-ce-shi/">
                     <div class="card-image">
@@ -499,9 +547,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -514,6 +562,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -540,30 +589,30 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/24/xian-cheng-zi-yuan-gong-xiang/">
+                <a href="/2022/02/25/2022-mei-sai-zong-jie-yu-fan-si/">
                     <div class="card-image">
                         
-                        <img src="/medias/images/03.jpg" class="responsive-img" alt="多线程资源共享">
+                        <img src="/medias/images/04.jpg" class="responsive-img" alt="2022年美赛总结与反思">
                         
-                        <span class="card-title">多线程资源共享</span>
+                        <span class="card-title">2022年美赛总结与反思</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用不同的方法处理数据竞争问题(生产者-消费者模型)
+                            本文将总结完成2022美赛c题的整个过程，特别是自己的心理历程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/RoboMaster/" class="post-category">
-                                    RoboMaster
+                            <a href="/categories/%E7%BE%8E%E8%B5%9B/" class="post-category">
+                                    美赛
                                 </a>
                             
                             
@@ -573,16 +622,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RoboMaster/">
-                        <span class="chip bg-color">RoboMaster</span>
+                    <a href="/tags/%E7%BE%8E%E8%B5%9B/">
+                        <span class="chip bg-color">美赛</span>
                     </a>
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
                     </a>
                     
-                    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                        <span class="chip bg-color">多线程</span>
+                    <a href="/tags/%E6%84%9F%E6%82%9F/">
+                        <span class="chip bg-color">感悟</span>
                     </a>
                     
                 </div>
