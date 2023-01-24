@@ -20,6 +20,8 @@
       
         <tags>
             
+            <tag> 算法组 </tag>
+            
             <tag> RoboMaster </tag>
             
             <tag> 大符 </tag>
@@ -78,6 +80,8 @@
       
         <tags>
             
+            <tag> 算法组 </tag>
+            
             <tag> RoboMaster </tag>
             
             <tag> c++ </tag>
@@ -134,11 +138,44 @@
       
         <tags>
             
+            <tag> 算法组 </tag>
+            
             <tag> RoboMaster </tag>
             
             <tag> 算法 </tag>
             
             <tag> 辅瞄 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Numpy实现卷积神经网络</title>
+      <link href="/2021/12/26/numpy-shi-xian-juan-ji-shen-jing-wang-luo/"/>
+      <url>/2021/12/26/numpy-shi-xian-juan-ji-shen-jing-wang-luo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Numpy实现卷积神经网络"><a href="#Numpy实现卷积神经网络" class="headerlink" title="Numpy实现卷积神经网络"></a>Numpy实现卷积神经网络</h1><p>随着TensorFlow以及Pytorch等框架的兴起，使用Numpy实现神经网络似乎是一件既繁琐又效率低的一种方式。不过，作为一个刚接触深度学习领域的小白，要秉承着从头造轮子的思想来学习。刚好Python课设要求，利用课余时间总共7days，完成了使用Numpy实现卷积神经网络，更加深刻地理解了各层的原理以及作用。</p><p>代码地址: <a href="https://gitee.com/XianMengxi/NeturalNetwork">闲梦溪-Numpy实现卷积神经网络</a></p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 课设 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 课设 </tag>
+            
+            <tag> 神经网络 </tag>
+            
+            <tag> 算法组 </tag>
             
         </tags>
       
