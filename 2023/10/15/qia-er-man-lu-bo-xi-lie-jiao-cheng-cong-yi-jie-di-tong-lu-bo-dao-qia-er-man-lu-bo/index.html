@@ -1,0 +1,939 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波, 闲居">
+    <meta name="description" content="介绍卡尔曼滤波系列内容，从一阶低通滤波到卡尔曼滤波">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波 | 闲居</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="闲居" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/XianMengxi/XianMengxi.github.io/medias/railgun.jpg);
+       background-repeat:no-repeat;
+       background-size: 100% 100%;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">闲居</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">闲居</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RoboMaster/">
+                                <span class="chip bg-color">RoboMaster</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                <span class="chip bg-color">电控组</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
+                                <span class="chip bg-color">卡尔曼滤波</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%8A%B6%E6%80%81%E4%BC%B0%E8%AE%A1/">
+                                <span class="chip bg-color">状态估计</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                RoboMaster
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-10-15
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="卡尔曼滤波系列教程-从一阶低通滤波到卡尔曼滤波"><a href="#卡尔曼滤波系列教程-从一阶低通滤波到卡尔曼滤波" class="headerlink" title="卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波"></a>卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波</h1><h2 id="一阶低通滤波"><a href="#一阶低通滤波" class="headerlink" title="一阶低通滤波"></a>一阶低通滤波</h2><p>一阶低通滤波的公式如下：<br>$$<br>    y_k &#x3D; (1 - a) y_{k - 1} + a x_k<br>$$</p>
+<p>该<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42887190/article/details/125749509">链接</a>中的博客详细介绍了一阶低通滤波的原理以及公式推导（需要一些拉式变换的前置知识），重点理解该一阶低通滤波的截止频率计算，能够辅助进行微分滤波以及PID输出滤波的系数计算。</p>
+<p>我们将该公式转化为：</p>
+<p>$$<br>    y_k &#x3D; (1 - a) y_{k - 1} + a x_k &#x3D; y_{k-1} + a (x_k - y_{k - 1})<br>$$</p>
+<p>如果你熟悉卡尔曼滤波的话，你会发现这与卡尔曼滤波中黄金五式中的最后一式有异曲同工之妙。</p>
+<p>$$<br>    \hat{x_k} &#x3D; \hat{x_k^-} + K_k(z_k - H\hat{x_k^-})<br>$$</p>
+<p>也即一阶低通滤波是卡尔曼增益为a，且卡尔曼增益不变，测量矩阵H为单位阵的特殊一阶卡尔曼滤波。这就是为什么说，若卡尔曼滤波收敛（卡尔曼滤波收敛意味着卡尔曼增益不变），最终卡尔曼滤波效果将等效于低通滤波。</p>
+<p>是不是很神奇呢&#x3D;￣ω￣&#x3D;，即便是听起来很“高大上”的卡尔曼滤波，本质上也与低通滤波无异(￣y▽,￣)╭ 。</p>
+<h2 id="观测器"><a href="#观测器" class="headerlink" title="观测器"></a>观测器</h2><p>我们学校的《自动控制原理（二）》课程将会讲述关于状态空间的现代控制理论，里面提到的龙贝格观测器的形式如下：</p>
+<p>$$<br>    \dot{\hat{x}} &#x3D; A\hat{x} + Bu + L(y - C\hat{x})<br>$$</p>
+<p>利用前向欧拉方法将方程离散化有：</p>
+<p>$$<br>    \frac{\hat{x_{k+1}} - \hat{x_{k}}}{\Delta t} &#x3D; A \hat{x_{k}} + Bu_k + L(y_k - C\hat{x_{k}})<br>$$</p>
+<p>化简有：</p>
+<p>$$<br>    \hat{x_{k+1}} &#x3D; (A\Delta t + I)\hat{x_{k}} + B\Delta t u_k + L\Delta t(y_k - C\hat{x_{k}})<br>$$</p>
+<p>你会发现该龙贝格观测器中的$L\Delta t$矩阵相当于卡尔曼滤波中的卡尔曼增益K，但$L\Delta t$矩阵是一个常数矩阵，故龙贝格观测器也是一个简化版的卡尔曼滤波，卡尔曼滤波本质上也是一个观测器。这里推荐<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/338269917">从全状态观测器到卡尔曼滤波器</a>该系列教程。</p>
+<p>如果你想学习一下现代控制理论内容，推荐该教程<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yx411u7iX/?spm_id_from=333.999.0.0">Advanced控制理论</a></p>
+<p>知识瞬间串联起来啦😺</p>
+<h2 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h2><p>推荐先看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7eR/?spm_id_from=333.337.search-card.all.click&vd_source=c9ad8e271fb7bd801090950dd31af8e5">卡尔曼滤波系列</a></p>
+<p>卡尔曼滤波黄金五式如下：</p>
+<p>预测过程：<br>$$<br>    \hat{x_k^-} &#x3D; A \hat{x_{k-1}^-} + B_k u_k<br>$$</p>
+<p>$$<br>    P_k^- &#x3D; A_k P_{k-1} A_k^T + Q<br>$$</p>
+<p>更新过程：<br>$$<br>    K_k &#x3D; \frac{P_k^- H_k^T}{H_k P_k^- H_k^T + R}<br>$$</p>
+<p>$$<br>    P_k &#x3D; (I - K_k H_k) P_k^-<br>$$</p>
+<p>$$<br>    \hat{x_k} &#x3D; \hat{x_k^-} + K_k(z_k - H\hat{x_k^-})<br>$$</p>
+<p>首先来看预测过程：</p>
+<p>$$<br>    \hat{x_k^-} &#x3D; A \hat{x_{k-1}^-} + B_k u_k<br>$$</p>
+<p>$$<br>    P_k^- &#x3D; A_k P_{k-1} A_k^T + Q<br>$$</p>
+<p>何谓预测呢？也即通过上一个时刻的状态通过<em><strong>预先假设的模型</strong></em>来计算下一个时刻的状态，然后通过更新过程检验模型的正确性。所以，该预先假设的模型决定了卡尔曼滤波的上限，越准确的模型卡尔曼滤波上限越高。</p>
+<p>$A_k$矩阵为状态转移矩阵，即表达了如何从$\hat{x_{k-1}^-}$到$\hat{x_k^-}$的转化。</p>
+<p>$u_k$为控制量，怎么去理解这个控制量呢？也即我们在从$\hat{x_{k-1}^-}$到$\hat{x_k^-}$的转化时，能够对状态变量产生影响，但本身不在状态变量里面的量。例如若选择位移与速度为状态变量，若我们的机器人上有加速度计，则可以将加速度作为$u_k$，这一步目的是使预测过程更加准确。</p>
+<p>$P_{k-1}$为$\hat{x_{k-1}^-}$的协方差矩阵，那么进行$A_k \hat{x_{k-1}^-}$操作之后，方差自然变成了$A_k P_{k-1} A_k^T$。</p>
+<p>也就是说$P_k^-$的计算之中，<em><strong>没有考虑</strong></em>$u_k$的噪声，也就是说，在设计过程中，$u_k$需要是足够准确的，可以认为是没有噪声的；或者，$u_k$的噪声需要计入Q矩阵中，作为预测过程的不确定性。</p>
+<p>关于Q矩阵，它的定义是预测过程的不确定性。当Q越大，那么意味着你对你自己的猜测越没有把握；当Q为0矩阵时，你完全相信你的预测，更新过程将不起作用，最终状态由预测决定；当Q为系数无穷大矩阵时，你完全不相信你的预测，故预测过程将不起作用，最终状态由更新过程决定。Q矩阵需要程序调试者预先设定，<em><strong>注意Q矩阵不能默认为对角阵</strong></em>，应根据各个状态变量之间的关联来进行设定。你永远不知道你的预测有多不准确，故这个参数是需要在每个应用场景中实践去调参得到的。</p>
+<p>再看更新过程：<br>$$<br>    K_k &#x3D; \frac{P_k^- H_k^T}{H_k P_k^- H_k^T + R}<br>$$</p>
+<p>$$<br>    P_k &#x3D; (I - K_k H_k) P_k^-<br>$$</p>
+<p>$$<br>    \hat{x_k} &#x3D; \hat{x_k^-} + K_k(z_k - H\hat{x_k^-})<br>$$</p>
+<p>看一个不严谨的推导，若$K_k &#x3D; 0$，则$\hat{x_k} &#x3D; \hat{x_k^-}$，这意味着结果完全由预测决定，测量量$z_k$将不起作用；若$R &#x3D; 0$,则$K_k &#x3D; \frac{1}{H_k}$，$\hat{x_k} &#x3D; \frac{z_k}{H_k}$，此时结果完全由测量过程（也即更新过程）决定。</p>
+<p>根据$K_k$的定义，当R越大，$K_k$越小，$\hat{x_k}$就越不相信更新过程。</p>
+<p>$z_k$根据定义应该为传感器直接输出的变量，因为<em><strong>传感器直接测量的值和我们设定的状态变量不一定相同</strong></em>，故需要使用H矩阵对$\hat{x_k^-}$转化为传感器测量的量。</p>
+<p>R矩阵的定义为$z_k$的协方差，该值和Q不同，它应该是<em><strong>完全确定的</strong></em>。它反映了传感器的精度，可以通过查看传感器的参数手册，或者通过数理统计的方法来计算得到。</p>
+<p>卡尔曼滤波实际应用包括卡尔曼滤波设计以及卡尔曼滤波调参，以下一一分析。</p>
+<h2 id="卡尔曼滤波设计"><a href="#卡尔曼滤波设计" class="headerlink" title="卡尔曼滤波设计"></a>卡尔曼滤波设计</h2><p>根据该卡尔曼滤波的黄金五式，设计卡尔曼滤波核心在于设计$\hat{x_k^-} &#x3D; A \hat{x_{k-1}^-} + B_k u_k$以及H矩阵。</p>
+<p>$\hat{x_k^-} &#x3D; A \hat{x_{k-1}^-} + B_k u_k$可以根据典型的假设模型，例如恒速度模型（CV运动模型），恒加速度模型（CA运动模型）等进行假设，也可以根据动力学方程等得到。</p>
+<p>H矩阵则是根据状态变量到测量变量的转化得到，注意构建起这两者的线性联系。</p>
+<h2 id="卡尔曼滤波调参"><a href="#卡尔曼滤波调参" class="headerlink" title="卡尔曼滤波调参"></a>卡尔曼滤波调参</h2><h3 id="初值设定"><a href="#初值设定" class="headerlink" title="初值设定"></a>初值设定</h3><p>卡尔曼滤波需要给定$x_{0}$以及$P_0$作为初值，一般来说$x_{0}$会以传感器测量的值通过一定运算得到的值作为初值，而$P_0$一般设置为单位阵让其自动迭代收敛即可（也可以根据你对状态变量的理解提前设定好该矩阵的值）。</p>
+<h3 id="矩阵调参"><a href="#矩阵调参" class="headerlink" title="矩阵调参"></a>矩阵调参</h3><p>需要调整的参数包括Q矩阵以及R矩阵。</p>
+<p>R矩阵的调整上面已经说明。</p>
+<p>Q矩阵的调整则首先需要确定预测不确定性的来源，例如CV运动模型中带有匀速假设，故预测不确定性来源在于物体运动的加速度，通过加速度将各个状态变量的状态估计协方差联系起来（具体可以看CV运动模型的介绍）。</p>
+<p>调参过程需要不断调整Q矩阵来达到满意的效果。</p>
+<p>当我们抛去公式推导来看卡尔曼滤波后，是不是觉得卡尔曼滤波瞬间没有那么难了呢&lt;(￣︶￣)↗[GO!]</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">闲梦溪</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://XianMengxi.github.io/2023/10/15/qia-er-man-lu-bo-xi-lie-jiao-cheng-cong-yi-jie-di-tong-lu-bo-dao-qia-er-man-lu-bo/">https://XianMengxi.github.io/2023/10/15/qia-er-man-lu-bo-xi-lie-jiao-cheng-cong-yi-jie-di-tong-lu-bo-dao-qia-er-man-lu-bo/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">闲梦溪</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/RoboMaster/">
+                                    <span class="chip bg-color">RoboMaster</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                    <span class="chip bg-color">电控组</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
+                                    <span class="chip bg-color">卡尔曼滤波</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%8A%B6%E6%80%81%E4%BC%B0%E8%AE%A1/">
+                                    <span class="chip bg-color">状态估计</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/11/21/lun-tui-ping-heng-bu-bing-zong-jie-ji-jie-she-ji-pian/lun-tui-ping-heng-bu-bing-zong-jie-ji-jie-she-ji-pian/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-11-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            闲梦溪
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/10/15/lun-gu-dian-ji-can-shu-bian-shi/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/images/16.jpg" class="responsive-img" alt="轮毂电机参数辨识">
+                        
+                        <span class="card-title">轮毂电机参数辨识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            对9025电机进行参数辨识
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                        <span class="chip bg-color">电控组</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%8A%B6%E6%80%81%E4%BC%B0%E8%AE%A1/">
+                        <span class="chip bg-color">状态估计</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8F%82%E6%95%B0%E8%BE%A8%E8%AF%86/">
+                        <span class="chip bg-color">参数辨识</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="8784556825"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">闲梦溪</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/XianMengxi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1348609758@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1348609758" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1348609758" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+        <!-- <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script> -->
+        <script src='/libs/mermaid/mermaid.min.js'></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize({theme: 'forest'});
+          }
+        </script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
