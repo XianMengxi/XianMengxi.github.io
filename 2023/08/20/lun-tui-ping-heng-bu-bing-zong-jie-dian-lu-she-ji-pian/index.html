@@ -1,0 +1,947 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="轮腿平衡步兵总结 - 电路设计篇, 闲居">
+    <meta name="description" content="总结平衡步兵电路设计过程遇到的问题">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>轮腿平衡步兵总结 - 电路设计篇 | 闲居</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="闲居" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/XianMengxi/XianMengxi.github.io/medias/railgun.jpg);
+       background-repeat:no-repeat;
+       background-size: 100% 100%;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">闲居</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">闲居</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/06.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">轮腿平衡步兵总结 - 电路设计篇</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RoboMaster/">
+                                <span class="chip bg-color">RoboMaster</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                <span class="chip bg-color">电控组</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                                <span class="chip bg-color">轮腿平衡步兵</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%B5%E8%B7%AF/">
+                                <span class="chip bg-color">电路</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                RoboMaster
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-08-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="轮腿平衡步兵总结-电路设计篇"><a href="#轮腿平衡步兵总结-电路设计篇" class="headerlink" title="轮腿平衡步兵总结 - 电路设计篇"></a>轮腿平衡步兵总结 - 电路设计篇</h1><h2 id="RS485-接口设计"><a href="#RS485-接口设计" class="headerlink" title="RS485 接口设计"></a>RS485 接口设计</h2><p>最初版的 485 电路接口长这样</p>
+<p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-12-46-32.png"></p>
+<p>修改之后的 485 电路接口长这样</p>
+<p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-12-47-46.png"></p>
+<p>最初版的电路存在以下几个问题：</p>
+<ol>
+<li><p>原 RS485 通信只包含一个芯片，但宇树 A1 电机只允许同时串联 0-3 个电机，轮腿平衡步兵一共有四个关节电机，故至少需要两路 485 通信接口才可。</p>
+</li>
+<li><p>最初版的 RS485 通信电路只适合于较低的波特率(例如 115200)，在波特率较高时无法正常通信，故驱动不了波特率为 4.8M 的宇树 A1 电机。</p>
+</li>
+</ol>
+<h2 id="电流电压采样接口"><a href="#电流电压采样接口" class="headerlink" title="电流电压采样接口"></a>电流电压采样接口</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-01-59.png"></p>
+<p>经常性存在 INA260 读不到数据的情况，由于 INA260 反馈信息在功率控制算法中起到至关重要的作用，故若嵌软反馈收不到电流计数据，可以考虑更换一下 INA260 芯片。</p>
+<h2 id="双向电源选择电路"><a href="#双向电源选择电路" class="headerlink" title="双向电源选择电路"></a>双向电源选择电路</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-02-45.png"></p>
+<p>该电路中，若 MOS 管损坏，则会存在若当前处于电容供电状态(因为 23 赛季平衡步兵使用的是伪被动电容)，因为机器人死亡出现底盘板以及裁判系统供电断电，底盘板对双路电源选择的控制消失，则会出现机器人死亡时仍有电容向轮毂电机供电的情况。这种情况会导致很多问题的发生，比如低电容电压给轮毂电机供电会使其进入低电压保护状态，再比如若死亡时给轮子的力矩不为 0，则在机器人死亡后，由于底盘板控制作用的消失，轮子将会保持原控制力矩而导致机器人“发疯”的情况。赛场上出现了多次 MOS 管损坏的情况，原因未知。</p>
+<h2 id="电容充电模块"><a href="#电容充电模块" class="headerlink" title="电容充电模块"></a>电容充电模块</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-09-02.png"></p>
+<p>该电路尚存在两个问题</p>
+<ol>
+<li><p>电容电压采样比不够准确，按照该原理图，采样电压*6.8 应该就是电容的实际电压，但实际上会存在很大误差，必须通过万用表测量电压以及观测实际反馈电压来拟合一个较为准确的比例系数，否则反馈电压与实际电压将会存在较大误差。</p>
+</li>
+<li><p>最大充电电流的未知性，芯片最大充电电流为 10A，但若实际以 10A 电流充电，可能会存在较大的安全隐患(比如起火)，目前使用的是最大 5A 充电，尚不知道实际充电电流上限是多少，而且充电电流上限可能会根据板子焊接的不同而不同，故如何压榨干该电容的性能成了一个很大的问题。</p>
+</li>
+</ol>
+<h2 id="TF-卡电路"><a href="#TF-卡电路" class="headerlink" title="TF 卡电路"></a>TF 卡电路</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-16-29.png"></p>
+<p>因为驱动 SPI 的代码过于复杂而导致很难判断是代码有问题还是电路存在问题，当前代码已调试通过的情况下，若存在问题，可以通过检查焊接情况来判断哪个引脚可能存在虚焊(或者全部重焊)。</p>
+<h2 id="CAN-通信电路"><a href="#CAN-通信电路" class="headerlink" title="CAN 通信电路"></a>CAN 通信电路</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-20-47.png"></p>
+<p>若同一路 CAN 的负载变大了之后，丢帧问题开始变得十分严重，控制不得不通过降低通信频率来减轻同一路的负载。未来可以考虑更换 CAN 芯片来看看是否能有效增加电路的稳定性。(即使使用屏蔽线之后感觉效果甚微)</p>
+<h2 id="IMU-电路-CAN-版本"><a href="#IMU-电路-CAN-版本" class="headerlink" title="IMU 电路(CAN 版本)"></a>IMU 电路(CAN 版本)</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-13-26-27.png"></p>
+<ol>
+<li><p>目前该 IMU 电路的主要思路是通过 SPI 读取 IMU 的信息，然后通过 CAN 发送到底盘控制板完成控制，这实际上存在一个问题就是，这会使 CAN 通信的负载加大，从而影响其它电机之类的稳定性。可以考虑将该 CAN 通信改为串口通信等其它通信方式，或者直接利用底盘板的 SPI 来读取 IMU 的信息(类似 C 板)。</p>
+</li>
+<li><p>为了保证 IMU 的零漂基本不变，需要进行温度控制，但该温度控制尚存在一定问题，例如在将机器人断电之后急剧上电，可能会存在 IMU 温度急剧升高而很难降低的情况(缺乏降温手段)，该问题原因未知，暂时是通过提高 IMU 控制温度的手段来一定情况下缓解该问题。</p>
+</li>
+<li><p>经常性存在读取不到 IMU 芯片信息(ID)的情况，原因未知。</p>
+</li>
+<li><p>不同的 IMU 板子温控效果不一样，有的可以让温度在$\pm 0.1 ℃$上下浮动，有的则只能让温度在$\pm 0.5 ℃$上下浮动；有的 PWM 输出给到最大，温度也升不上去，有的即使不控制温度，温度也升得很快。变化的温度将会使陀螺仪零漂不能准确地估计，控制变得困难。</p>
+</li>
+</ol>
+<h2 id="IMU-电路-串口版本"><a href="#IMU-电路-串口版本" class="headerlink" title="IMU 电路(串口版本)"></a>IMU 电路(串口版本)</h2><p><img src="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/2023-08-20-14-05-31.png"></p>
+<ol>
+<li>该串口陀螺仪可能存在“间歇性”出现问题，即可能突然串口就收不到数据了这种情况，十分不稳定，后续还需要对电路进行分析并改进。</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">闲梦溪</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://XianMengxi.github.io/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/">https://XianMengxi.github.io/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">闲梦溪</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/RoboMaster/">
+                                    <span class="chip bg-color">RoboMaster</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                    <span class="chip bg-color">电控组</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                                    <span class="chip bg-color">轮腿平衡步兵</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%B5%E8%B7%AF/">
+                                    <span class="chip bg-color">电路</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/08/22/lun-tui-ping-heng-bu-bing-zong-jie-diao-shi-gong-ju-pian/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/images/06.jpg" class="responsive-img" alt="轮腿平衡步兵总结 - 调试工具篇">
+                        
+                        <span class="card-title">轮腿平衡步兵总结 - 调试工具篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结平衡步兵代码中使用到的调试工具
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                        <span class="chip bg-color">电控组</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                        <span class="chip bg-color">轮腿平衡步兵</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95/">
+                        <span class="chip bg-color">代码调试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/08/19/lun-tui-ping-heng-bu-bing-zong-jie-ji-jie-she-ji-pian/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/images/06.jpg" class="responsive-img" alt="轮腿平衡步兵总结 - 机械设计篇">
+                        
+                        <span class="card-title">轮腿平衡步兵总结 - 机械设计篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结平衡步兵2022赛季机械设计上存在的问题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                        <span class="chip bg-color">轮腿平衡步兵</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%BA%E6%A2%B0/">
+                        <span class="chip bg-color">机械</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%BA%E6%A2%B0%E7%BB%84/">
+                        <span class="chip bg-color">机械组</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="8784556825"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">闲梦溪</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/XianMengxi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1348609758@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1348609758" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1348609758" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+        <!-- <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script> -->
+        <script src='/libs/mermaid/mermaid.min.js'></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize({theme: 'forest'});
+          }
+        </script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1075 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="轮腿平衡步兵总结 - 调试工具篇, 闲居">
+    <meta name="description" content="总结平衡步兵代码中使用到的调试工具">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>轮腿平衡步兵总结 - 调试工具篇 | 闲居</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="闲居" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/XianMengxi/XianMengxi.github.io/medias/railgun.jpg);
+       background-repeat:no-repeat;
+       background-size: 100% 100%;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">闲居</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">闲居</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/images/06.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">轮腿平衡步兵总结 - 调试工具篇</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/RoboMaster/">
+                                <span class="chip bg-color">RoboMaster</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                <span class="chip bg-color">电控组</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                                <span class="chip bg-color">轮腿平衡步兵</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95/">
+                                <span class="chip bg-color">代码调试</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                RoboMaster
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-08-22
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="轮腿平衡步兵总结-调试工具篇"><a href="#轮腿平衡步兵总结-调试工具篇" class="headerlink" title="轮腿平衡步兵总结 - 调试工具篇"></a>轮腿平衡步兵总结 - 调试工具篇</h1><h2 id="J-link-RTT"><a href="#J-link-RTT" class="headerlink" title="J-link RTT"></a>J-link RTT</h2><p>若需要明白如何部署 J-link RTT Viewer 或者如何使用，请查阅该文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/hxj0323/article/details/108294267">STM32 实现 SEGGER RTT 打印</a></p>
+<p>在平衡步兵代码中，可以通过定义宏定义 DEBUG_MODE 来使能 RTT Viewer 功能。</p>
+<p>通过宏定义的封装，可以实现日志形式的输出。</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// RTT</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> PRINTF(str, ...)       \
+    SEGGER_RTT_SetTerminal(0); \
+    SEGGER_RTT_printf(0, str, ##__VA_ARGS__) </span><span class="token comment" spellcheck="true">// 字符串发送</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> PRINTF_F(str_temp, str, format) \
+    sprintf(str_temp, str, format);     \
+    SEGGER_RTT_SetTerminal(0);          \
+    SEGGER_RTT_printf(0, str_temp); </span><span class="token comment" spellcheck="true">// 带浮点数的发送</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_PROTO(window, type, color, format, ...)     \
+    SEGGER_RTT_printf(window, "  %s%s" format "\r\n%s", \
+                      color,                            \
+                      type,                             \
+                      ##__VA_ARGS__,                    \
+                      RTT_CTRL_RESET)</span>
+
+<span class="token comment" spellcheck="true">/* 清屏*/</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_CLEAR() SEGGER_RTT_WriteString(0, "  " RTT_CTRL_CLEAR)</span>
+
+<span class="token comment" spellcheck="true">/* 无颜色日志输出 */</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG(format, ...) LOG_PROTO(0, "", "", format, ##__VA_ARGS__)</span>
+
+<span class="token comment" spellcheck="true">/* 有颜色格式日志输出 */</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_INFO(format, ...) LOG_PROTO(0, "[INFO]: ", RTT_CTRL_TEXT_BRIGHT_GREEN, format, ##__VA_ARGS__)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_WARNING(format, ...) LOG_PROTO(0, "[WARNING]: ", RTT_CTRL_TEXT_BRIGHT_YELLOW, format, ##__VA_ARGS__)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_ERROR(format, ...) LOG_PROTO(0, "[ERROR]: ", RTT_CTRL_TEXT_BRIGHT_RED, format, ##__VA_ARGS__)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LOG_FATAL(format, ...) LOG_PROTO(0, "[FATAL]: ", RTT_CTRL_TEXT_BRIGHT_BLUE, format, ##__VA_ARGS__)</span>
+</code></pre>
+<h2 id="Jscope-RTT-Mode"><a href="#Jscope-RTT-Mode" class="headerlink" title="Jscope RTT Mode"></a>Jscope RTT Mode</h2><p>该模式主要实现高速曲线绘制，可以参考以下博客:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/646780354">利用 J-Scope RTT 模式实现高速（20K）曲线打印</a></p>
+<p>在平衡步兵代码中，可以通过定义宏定义 JSCOPE_RTT_MODE 来使能 Jscope RTT Mode 功能。</p>
+<h2 id="FreeRTOS-性能测试模块"><a href="#FreeRTOS-性能测试模块" class="headerlink" title="FreeRTOS 性能测试模块"></a>FreeRTOS 性能测试模块</h2><p>该模块可以统计每个任务占用的 CPU 占有率，以及每个任务的堆栈使用情况，可以通过该模块判断哪个任务占用 CPU 时间长从而合理优化其运行时间，通过判断任务堆栈使用剩余量来增加或减少给予该任务的堆栈大小。</p>
+<p>参考该博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36347513/article/details/112219602">FreeRTOS 学习笔记（11）——CPU 使用率统计</a></p>
+<p>在平衡步兵代码中，可以通过定义宏定义 DEBUG_MODE_FREERTOS 来使能 FreeRTOS 性能测试模块。</p>
+<h2 id="计时器模块"><a href="#计时器模块" class="headerlink" title="计时器模块"></a>计时器模块</h2><p>在平衡步兵代码中，采用了 TIM2 作为一个单独的计时器，该计时器主要用来实现精准延时，辅助 debug 使用。</p>
+<h3 id="丢帧估计"><a href="#丢帧估计" class="headerlink" title="丢帧估计"></a>丢帧估计</h3><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief 计算两次调用之间的时间差
+ * @param[in] cnt_last 上一次计数值
+ */</span>
+<span class="token keyword">float</span> <span class="token function">GetDeltaT</span><span class="token punctuation">(</span>uint32_t <span class="token operator">*</span>cnt_last<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">volatile</span> uint32_t cnt_now <span class="token operator">=</span> COUNTER_TIMx<span class="token operator">-></span>CNT<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> dt <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>uint32_t<span class="token punctuation">)</span><span class="token punctuation">(</span>cnt_now <span class="token operator">-</span> <span class="token operator">*</span>cnt_last<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>COUNTER_SAMPLING<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>cnt_last <span class="token operator">=</span> cnt_now<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> dt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>以上函数能算出两次调用之间的耗时，通过该耗时能够判断帧率是否符合要求以及丢帧帧数判断。例如:</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">LossUpdate</span><span class="token punctuation">(</span>Loss_Debugger <span class="token operator">*</span>loss_debugger<span class="token punctuation">,</span> <span class="token keyword">float</span> thresh_t<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    loss_debugger<span class="token operator">-></span>recv_msgs_num<span class="token operator">++</span><span class="token punctuation">;</span>
+    loss_debugger<span class="token operator">-></span>can_dt <span class="token operator">=</span> <span class="token function">GetDeltaT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>loss_debugger<span class="token operator">-></span>last_can_cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>loss_debugger<span class="token operator">-></span>can_dt <span class="token operator">></span> thresh_t<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        loss_debugger<span class="token operator">-></span>loss_num<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="程序耗时估计"><a href="#程序耗时估计" class="headerlink" title="程序耗时估计"></a>程序耗时估计</h3><pre class=" language-c"><code class="language-c">    <span class="token function">GetDeltaT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>global_debugger<span class="token punctuation">.</span>robot_debugger<span class="token punctuation">.</span>last_cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">KF_Wheel_Accel_Update</span><span class="token punctuation">(</span>speed<span class="token punctuation">,</span>
+                              balance_infantry<span class="token punctuation">.</span>INS<span class="token operator">-></span>MotionAccel_n<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0.001</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    global_debugger<span class="token punctuation">.</span>robot_debugger<span class="token punctuation">.</span>dt <span class="token operator">=</span> <span class="token function">GetDeltaT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>global_debugger<span class="token punctuation">.</span>robot_debugger<span class="token punctuation">.</span>last_cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="精准延时"><a href="#精准延时" class="headerlink" title="精准延时"></a>精准延时</h3><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief 延时 /us
+ * @param[in] void
+ */</span>
+<span class="token keyword">void</span> <span class="token function">Delay</span><span class="token punctuation">(</span>uint32_t Delay<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">volatile</span> uint32_t tickstart <span class="token operator">=</span> COUNTER_TIMx<span class="token operator">-></span>CNT<span class="token punctuation">;</span>
+    uint32_t wait <span class="token operator">=</span> Delay<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>COUNTER_TIMx<span class="token operator">-></span>CNT <span class="token operator">-</span> tickstart<span class="token punctuation">)</span> <span class="token operator">&lt;</span> wait<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">DelayTo</span><span class="token punctuation">(</span><span class="token keyword">volatile</span> uint32_t <span class="token operator">*</span>tickstart<span class="token punctuation">,</span> uint32_t Delay<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    uint32_t wait <span class="token operator">=</span> Delay<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>COUNTER_TIMx<span class="token operator">-></span>CNT <span class="token operator">-</span> <span class="token operator">*</span>tickstart<span class="token punctuation">)</span> <span class="token operator">&lt;</span> wait<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="LED"><a href="#LED" class="headerlink" title="LED"></a>LED</h2><p>调试时，可通过 LED 的亮灯情况判断当前机器人的状态。通过以下宏定义封装：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">define</span> LED_R_RCC_AHBxPeriphClockCmd RCC_AHB1PeriphClockCmd</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_R_RCC_AHBxPeriph_GPIOx RCC_AHB1Periph_GPIOC</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_R_GPIOx GPIOC</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_R_GPIO_Pin_x GPIO_Pin_9</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_RCC_AHBxPeriphClockCmd RCC_AHB1PeriphClockCmd</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_RCC_AHBxPeriph_GPIOx RCC_AHB1Periph_GPIOC</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_GPIOx GPIOC</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_GPIO_Pin_x GPIO_Pin_8</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_R_ON GPIO_ResetBits(LED_R_GPIOx, LED_R_GPIO_Pin_x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_R_OFF GPIO_SetBits(LED_R_GPIOx, LED_R_GPIO_Pin_x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_ON GPIO_ResetBits(LED_B_GPIOx, LED_B_GPIO_Pin_x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LED_B_OFF GPIO_SetBits(LED_B_GPIOx, LED_B_GPIO_Pin_x)</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> ONLY_LED_B_ON \
+    LED_B_ON;         \
+    LED_R_OFF</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> ONLY_LED_R_ON \
+    LED_R_ON;         \
+    LED_B_OFF</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> CLOLOR_LED_ON \
+    LED_R_ON;         \
+    LED_B_ON</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> ALL_LED_OFF \
+    LED_R_OFF;      \
+    LED_B_OFF</span>
+</code></pre>
+<h2 id="无线调试器连-SWD-接口"><a href="#无线调试器连-SWD-接口" class="headerlink" title="无线调试器连 SWD 接口"></a>无线调试器连 SWD 接口</h2><img src="./2.jpg" width = "200" height = "300" alt="接收端" align=center />
+
+<img src="./1.jpg" width = "200" height = "300" alt="接收端" align=center />
+
+<p>只需要电脑端 USB 连接发送端,接收端连接板子 SWD 接口(注意线序)，即可正常使用 Keil 下载代码，进入 Debug 模式等等。</p>
+<h2 id="蓝牙-x2F-WIFI-x2F-无线调试器-VOFA"><a href="#蓝牙-x2F-WIFI-x2F-无线调试器-VOFA" class="headerlink" title="蓝牙&#x2F;WIFI&#x2F;无线调试器 + VOFA+"></a>蓝牙&#x2F;WIFI&#x2F;无线调试器 + VOFA+</h2><p>参考以下博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_56030168/article/details/124545048#2.2%20justfloat">Vofa+使用笔记（1）：用 Vofa+通过串口连接显示波形</a></p>
+<p>在平衡步兵代码中的 BlueToothTask 中，则是通过以下代码发送需要显示在 VOFA+中的数据。</p>
+<pre class=" language-c"><code class="language-c">        <span class="token comment" spellcheck="true">// 电容功能测试</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> INA260_1<span class="token punctuation">.</span>Power <span class="token operator">/</span> <span class="token number">1000.0f</span><span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> referee_data<span class="token punctuation">.</span>Power_Heat_Data<span class="token punctuation">.</span>chassis_power<span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> buffer_energy<span class="token punctuation">.</span>buffering_energy<span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> super_power<span class="token punctuation">.</span>actual_vol<span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>INA260_1<span class="token punctuation">.</span>Power <span class="token operator">-</span> INA260_2<span class="token punctuation">.</span>Power<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000.0f</span><span class="token punctuation">;</span>
+        data<span class="token punctuation">.</span>fdata<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> balance_infantry<span class="token punctuation">.</span>state_vector<span class="token punctuation">[</span>STATE_X_V<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">BLUE_TOOTHSendData</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="掉线检测任务-Offline-task"><a href="#掉线检测任务-Offline-task" class="headerlink" title="掉线检测任务(Offline_task)"></a>掉线检测任务(Offline_task)</h2><p>该任务逻辑比较简单，即通过接受传感器帧数来判断是否有传感器掉线，同时该任务也会对电机保护情况进行观测，若有错误则立即反馈异常，交给其它任务处理该异常。</p>
+<h2 id="电路测试任务-Test-task"><a href="#电路测试任务-Test-task" class="headerlink" title="电路测试任务(Test_task)"></a>电路测试任务(Test_task)</h2><p>给电路测试用的任务，可以测试底盘板 CAN1,CAN2,两个 RS485 接口是否有信号。在平衡步兵代码中，可以通过使 TEST_TASK_ON 为 1 使能测试任务。</p>
+<h2 id="轮毂电机系统辨识任务-MF9025-IdentifyTask"><a href="#轮毂电机系统辨识任务-MF9025-IdentifyTask" class="headerlink" title="轮毂电机系统辨识任务(MF9025_IdentifyTask)"></a>轮毂电机系统辨识任务(MF9025_IdentifyTask)</h2><p>辨识轮毂电机转动惯量的任务,可以通过使 MF9025_IDENTIFY_ON 宏定义为 1 使能该任务，具体可以辨识思路可以参考 《轮腿平衡步兵总结》 - 《功能研发》 - 《轮毂电机参数辨识》</p>
+<h2 id="看门狗设计"><a href="#看门狗设计" class="headerlink" title="看门狗设计"></a>看门狗设计</h2><p>该看门狗只有在所有关键任务都喂狗之后，才算整个系统运行正常而不重启，该目标的实现是通过任务组来实现，即</p>
+<pre class=" language-c"><code class="language-c">        xCreatedEventGroup <span class="token operator">=</span> <span class="token function">xEventGroupCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 创建任务组</span>
+
+        <span class="token comment" spellcheck="true">/* 等待所有任务发来事件标志 */</span>
+        uxBits <span class="token operator">=</span> <span class="token function">xEventGroupWaitBits</span><span class="token punctuation">(</span>xCreatedEventGroup<span class="token punctuation">,</span>           <span class="token comment" spellcheck="true">/* 事件标志组句柄 */</span>
+                                     TASK_BIT_ALL<span class="token punctuation">,</span>                 <span class="token comment" spellcheck="true">/* 等待TASK_BIT_ALL被设置 */</span>
+                                     pdTRUE<span class="token punctuation">,</span>                       <span class="token comment" spellcheck="true">/* 退出前TASK_BIT_ALL被清除，这里是TASK_BIT_ALL都被设置才表示“退出”*/</span>
+                                     pdTRUE<span class="token punctuation">,</span>                       <span class="token comment" spellcheck="true">/* 设置为pdTRUE表示等待TASK_BIT_ALL都被设置*/</span>
+                                     <span class="token function">pdMS_TO_TICKS</span><span class="token punctuation">(</span>xTicksToWait<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 等待延迟时间 */</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>uxBits <span class="token operator">&amp;</span> TASK_BIT_ALL<span class="token punctuation">)</span> <span class="token operator">==</span> TASK_BIT_ALL<span class="token punctuation">)</span>               <span class="token comment" spellcheck="true">// 判断各个任务是否执行</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">IWDG_Feed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<p>喂狗则是通过</p>
+<pre class=" language-c"><code class="language-c"> <span class="token comment" spellcheck="true">/*  喂狗 */</span>
+<span class="token function">xEventGroupSetBits</span><span class="token punctuation">(</span>xCreatedEventGroup<span class="token punctuation">,</span> CHASIS_CONTROL_BIT<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 标志位置一</span>
+</code></pre>
+<p>这样的话，只要有一个关键任务没有完成喂狗操作，则整个系统都会重启，从而保障了整个系统的稳定性。</p>
+<h2 id="Jscope"><a href="#Jscope" class="headerlink" title="Jscope"></a>Jscope</h2><p>参考该博客<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40696002/article/details/107855368">单片机调试工具 J-Scopex 使用说明</a></p>
+<h2 id="Vscode-Ozone-调试"><a href="#Vscode-Ozone-调试" class="headerlink" title="Vscode + Ozone 调试"></a>Vscode + Ozone 调试</h2><p>使用 Vscode 代替 Keil 进行代码编辑有以下几个好处(包括但不限于)</p>
+<ol>
+<li><p>Vscode 界面美观</p>
+</li>
+<li><p>代码提示，代码可自动缩进对齐</p>
+</li>
+<li><p>可通过 Vscode 插件配合提高写代码效率。</p>
+</li>
+</ol>
+<p>详细使用方法可以参考 《轮腿平衡步兵总结》 - 《功能研发》 - 《Ozone+Vscode 嵌入式开发》</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">闲梦溪</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://XianMengxi.github.io/2023/08/22/lun-tui-ping-heng-bu-bing-zong-jie-diao-shi-gong-ju-pian/">https://XianMengxi.github.io/2023/08/22/lun-tui-ping-heng-bu-bing-zong-jie-diao-shi-gong-ju-pian/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">闲梦溪</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/RoboMaster/">
+                                    <span class="chip bg-color">RoboMaster</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                                    <span class="chip bg-color">电控组</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                                    <span class="chip bg-color">轮腿平衡步兵</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95/">
+                                    <span class="chip bg-color">代码调试</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/08/26/lun-tui-ping-heng-bu-bing-zong-jie-kong-zhi-suan-fa-pian/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/images/06.jpg" class="responsive-img" alt="轮腿平衡步兵总结 - 控制算法篇">
+                        
+                        <span class="card-title">轮腿平衡步兵总结 - 控制算法篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结平衡步兵2022赛季使用的控制算法参考
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                        <span class="chip bg-color">电控组</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                        <span class="chip bg-color">轮腿平衡步兵</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">控制算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/08/20/lun-tui-ping-heng-bu-bing-zong-jie-dian-lu-she-ji-pian/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/images/06.jpg" class="responsive-img" alt="轮腿平衡步兵总结 - 电路设计篇">
+                        
+                        <span class="card-title">轮腿平衡步兵总结 - 电路设计篇</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结平衡步兵电路设计过程遇到的问题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/RoboMaster/" class="post-category">
+                                    RoboMaster
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RoboMaster/">
+                        <span class="chip bg-color">RoboMaster</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E6%8E%A7%E7%BB%84/">
+                        <span class="chip bg-color">电控组</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BD%AE%E8%85%BF%E5%B9%B3%E8%A1%A1%E6%AD%A5%E5%85%B5/">
+                        <span class="chip bg-color">轮腿平衡步兵</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%B5%E8%B7%AF/">
+                        <span class="chip bg-color">电路</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="8784556825"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <a href="/about" target="_blank">闲梦溪</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/XianMengxi" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1348609758@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1348609758" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1348609758" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+        <!-- <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script> -->
+        <script src='/libs/mermaid/mermaid.min.js'></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize({theme: 'forest'});
+          }
+        </script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
