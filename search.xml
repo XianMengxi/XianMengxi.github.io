@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>PCB规则调整笔记</title>
+      <link href="/2023/12/10/pcb-gui-ze-diao-zheng-bi-ji/"/>
+      <url>/2023/12/10/pcb-gui-ze-diao-zheng-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PCB规则调整笔记"><a href="#PCB规则调整笔记" class="headerlink" title="PCB规则调整笔记"></a>PCB规则调整笔记</h1><h2 id="最小线距clearance"><a href="#最小线距clearance" class="headerlink" title="最小线距clearance"></a>最小线距clearance</h2><p>3.5mil - 6mil</p><h2 id="线宽-routing-width"><a href="#线宽-routing-width" class="headerlink" title="线宽 routing width"></a>线宽 routing width</h2><p>3.5mil - 6mil</p><p>对于电源线的网络则线宽则可以15mil - 30 mil</p><h2 id="过孔规则-routing-vias"><a href="#过孔规则-routing-vias" class="headerlink" title="过孔规则 routing vias"></a>过孔规则 routing vias</h2><p>0.3mm - 0.2 mm</p><p>尽量12mil以上</p><p>过孔与盘的关系为 盘 &#x3D; 2 * 过孔直径 +- 2mil</p><h2 id="负片层铺铜-plane-clearance"><a href="#负片层铺铜-plane-clearance" class="headerlink" title="负片层铺铜(plane clearance)"></a>负片层铺铜(plane clearance)</h2><p>需要比最小线宽大，一般设置为8mil</p><h2 id="正片层铺铜（Polygon-connect）"><a href="#正片层铺铜（Polygon-connect）" class="headerlink" title="正片层铺铜（Polygon connect）"></a>正片层铺铜（Polygon connect）</h2><p>对于焊盘：</p><p>全连接（direct connect）：需要考虑铺铜时载流能力的时候，或者回流焊</p><p>十字连接（relief connnect）：需要手工焊接时</p><p>对于过孔，不适合十字连接,用全连接</p><h2 id="丝印到焊盘距离（silk-to-solder-mask-clearance）"><a href="#丝印到焊盘距离（silk-to-solder-mask-clearance）" class="headerlink" title="丝印到焊盘距离（silk to solder mask clearance）"></a>丝印到焊盘距离（silk to solder mask clearance）</h2><p>2mil</p><h2 id="丝印调整"><a href="#丝印调整" class="headerlink" title="丝印调整"></a>丝印调整</h2><ol><li><p>丝印不上阻焊</p></li><li><p>字号 4&#x2F;25mil，5&#x2F;30mil，6&#x2F;45mil</p></li><li><p>保证字母在左或者在下</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 硬件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+            <tag> 硬件组 </tag>
+            
+            <tag> PCB设计 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波</title>
       <link href="/2023/10/15/qia-er-man-lu-bo-xi-lie-jiao-cheng-cong-yi-jie-di-tong-lu-bo-dao-qia-er-man-lu-bo/"/>
       <url>/2023/10/15/qia-er-man-lu-bo-xi-lie-jiao-cheng-cong-yi-jie-di-tong-lu-bo-dao-qia-er-man-lu-bo/</url>

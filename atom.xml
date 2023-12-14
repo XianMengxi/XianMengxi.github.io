@@ -6,7 +6,7 @@
   <link href="https://xianmengxi.github.io/atom.xml" rel="self"/>
   
   <link href="https://xianmengxi.github.io/"/>
-  <updated>2023-11-21T12:35:17.130Z</updated>
+  <updated>2023-12-14T08:47:10.349Z</updated>
   <id>https://xianmengxi.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PCB规则调整笔记</title>
+    <link href="https://xianmengxi.github.io/2023/12/10/pcb-gui-ze-diao-zheng-bi-ji/"/>
+    <id>https://xianmengxi.github.io/2023/12/10/pcb-gui-ze-diao-zheng-bi-ji/</id>
+    <published>2023-12-10T02:00:00.000Z</published>
+    <updated>2023-12-14T08:47:10.349Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PCB规则调整笔记"><a href="#PCB规则调整笔记" class="headerlink" title="PCB规则调整笔记"></a>PCB规则调整笔记</h1><h2 id="最小线距clearance"><a href="#最小线距clearance" class="headerlink" title="最小线距clearance"></a>最小线距clearance</h2><p>3.5mil - 6mil</p><h2 id="线宽-routing-width"><a href="#线宽-routing-width" class="headerlink" title="线宽 routing width"></a>线宽 routing width</h2><p>3.5mil - 6mil</p><p>对于电源线的网络则线宽则可以15mil - 30 mil</p><h2 id="过孔规则-routing-vias"><a href="#过孔规则-routing-vias" class="headerlink" title="过孔规则 routing vias"></a>过孔规则 routing vias</h2><p>0.3mm - 0.2 mm</p><p>尽量12mil以上</p><p>过孔与盘的关系为 盘 &#x3D; 2 * 过孔直径 +- 2mil</p><h2 id="负片层铺铜-plane-clearance"><a href="#负片层铺铜-plane-clearance" class="headerlink" title="负片层铺铜(plane clearance)"></a>负片层铺铜(plane clearance)</h2><p>需要比最小线宽大，一般设置为8mil</p><h2 id="正片层铺铜（Polygon-connect）"><a href="#正片层铺铜（Polygon-connect）" class="headerlink" title="正片层铺铜（Polygon connect）"></a>正片层铺铜（Polygon connect）</h2><p>对于焊盘：</p><p>全连接（direct connect）：需要考虑铺铜时载流能力的时候，或者回流焊</p><p>十字连接（relief connnect）：需要手工焊接时</p><p>对于过孔，不适合十字连接,用全连接</p><h2 id="丝印到焊盘距离（silk-to-solder-mask-clearance）"><a href="#丝印到焊盘距离（silk-to-solder-mask-clearance）" class="headerlink" title="丝印到焊盘距离（silk to solder mask clearance）"></a>丝印到焊盘距离（silk to solder mask clearance）</h2><p>2mil</p><h2 id="丝印调整"><a href="#丝印调整" class="headerlink" title="丝印调整"></a>丝印调整</h2><ol><li><p>丝印不上阻焊</p></li><li><p>字号 4&#x2F;25mil，5&#x2F;30mil，6&#x2F;45mil</p></li><li><p>保证字母在左或者在下</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;PCB规则调整笔记&quot;&gt;&lt;a href=&quot;#PCB规则调整笔记&quot; class=&quot;headerlink&quot; title=&quot;PCB规则调整笔记&quot;&gt;&lt;/a&gt;PCB规则调整笔记&lt;/h1&gt;&lt;h2 id=&quot;最小线距clearance&quot;&gt;&lt;a href=&quot;#最小线距clearanc</summary>
+      
+    
+    
+    
+    <category term="硬件" scheme="https://xianmengxi.github.io/categories/%E7%A1%AC%E4%BB%B6/"/>
+    
+    
+    <category term="笔记" scheme="https://xianmengxi.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="硬件组" scheme="https://xianmengxi.github.io/tags/%E7%A1%AC%E4%BB%B6%E7%BB%84/"/>
+    
+    <category term="PCB设计" scheme="https://xianmengxi.github.io/tags/PCB%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>卡尔曼滤波系列教程 - 从一阶低通滤波到卡尔曼滤波</title>
